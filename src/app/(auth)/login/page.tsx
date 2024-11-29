@@ -37,6 +37,7 @@ function Login() {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
           method: "POST",
+          mode: "no-cors",
           credentials: "include", // Nếu dùng cookie
           headers: {
             "Content-Type": "application/json",
