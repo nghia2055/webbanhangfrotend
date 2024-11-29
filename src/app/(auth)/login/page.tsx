@@ -35,14 +35,17 @@ function Login() {
     };
     const Login = async () => {
       try {
-        const res = await fetch("https://backendwebbanhang.vercel.app/login", {
-          method: "POST",
-          credentials: "include", // Nếu dùng cookie
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
+        const res = await fetch(
+          "https://backendwebbanhang-qf7x.vercel.app/login",
+          {
+            method: "POST",
+            credentials: "include", // Nếu dùng cookie
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
