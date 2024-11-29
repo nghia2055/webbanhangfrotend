@@ -4,8 +4,6 @@ import TitleHeader from "@/app/component/header/title";
 import { FaBagShopping } from "react-icons/fa6";
 import IconHeader from "./iconLoginHeader";
 import Search from "./Search/search";
-import { motion } from "framer-motion";
-import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
   return (
