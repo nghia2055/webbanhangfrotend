@@ -375,7 +375,7 @@ const ProductForm: React.FC = () => {
             {Array.from(watchImages).map((file, index) => (
               <Image
                 key={index}
-                src={URL.createObjectURL(file)}
+                src={URL.createObjectURL(file as File)}
                 alt={`Preview ${index + 1}`}
                 className="w-full h-24 object-cover border rounded-lg"
               />
