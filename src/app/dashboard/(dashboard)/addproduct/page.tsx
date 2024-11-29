@@ -36,7 +36,9 @@ const schema = z.object({
     .refine(
       (files) =>
         files &&
-        Array.from(files).every((file) => file.size <= 2 * 1024 * 1024),
+        Array.from(files).every(
+          (file) => (file as File).size <= 2 * 1024 * 1024
+        ),
       { message: "Mỗi ảnh phải nhỏ hơn 2MB" }
     ),
 });
