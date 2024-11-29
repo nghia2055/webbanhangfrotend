@@ -35,7 +35,7 @@ function Login() {
     };
     const Login = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8080/login", {
+        const res = await fetch("https://backendwebbanhang.vercel.app/login", {
           method: "POST",
           credentials: "include", // Nếu dùng cookie
           headers: {
