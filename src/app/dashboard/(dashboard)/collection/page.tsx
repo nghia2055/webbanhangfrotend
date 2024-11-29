@@ -16,6 +16,7 @@ type FormValues = z.infer<typeof schema>;
 function Collection() {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
@@ -29,7 +30,7 @@ function Collection() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    await fetch("http://127.0.0.1:8080/menu", {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Bắt buộc khi gửi JSON
@@ -45,6 +46,7 @@ function Collection() {
       })
       .then((res) => {
         console.log(res);
+        reset();
       })
       .catch((err) => {
         console.log(err);

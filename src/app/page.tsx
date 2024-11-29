@@ -4,6 +4,7 @@ import Header from "@/app/component/header/header";
 import Footer from "@/app/component/header/footer";
 
 export default function Home() {
+  console.log("haha", process.env.NEXT_PUBLIC_API_URL);
   return (
     <>
       <Header />

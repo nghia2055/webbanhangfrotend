@@ -101,6 +101,8 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <Image
+              height={500}
+              width={500}
               src="https://via.placeholder.com/300"
               alt="Product 1"
               className="w-full h-48 object-cover rounded-lg"
@@ -118,6 +120,8 @@ const HomePage: React.FC = () => {
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <Image
+              height={500}
+              width={500}
               src="https://via.placeholder.com/300"
               alt="Product 2"
               className="w-full h-48 object-cover rounded-lg"
@@ -135,6 +139,8 @@ const HomePage: React.FC = () => {
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <Image
+              height={500}
+              width={500}
               src="https://via.placeholder.com/300"
               alt="Product 3"
               className="w-full h-48 object-cover rounded-lg"

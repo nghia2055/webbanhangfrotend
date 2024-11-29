@@ -77,7 +77,7 @@ const ProductForm: React.FC = () => {
       formData.append("productImages", data.productImages[i]); // 'images' là tên trường mà bạn sẽ sử dụng trên server
     }
 
-    fetch("http://127.0.0.1:8080/addProduct", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/addProduct`, {
       method: "POST",
       body: formData,
     })
@@ -124,7 +124,7 @@ const ProductForm: React.FC = () => {
   useEffect(() => {
     const fetchAPIMenu = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8080/menu/add", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu/add`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -374,6 +374,8 @@ const ProductForm: React.FC = () => {
           <div className="mt-4 grid grid-cols-3 gap-2">
             {Array.from(watchImages).map((file, index) => (
               <Image
+                height={500}
+                width={500}
                 key={index}
                 src={URL.createObjectURL(file as File)}
                 alt={`Preview ${index + 1}`}

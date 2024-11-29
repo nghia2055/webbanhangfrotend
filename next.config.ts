@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["www.blissworld.com", "cdn.shopify.com", "cdn.pixabay.com"],
+    domains: [
+      "www.blissworld.com",
+      "cdn.shopify.com",
+      "cdn.pixabay.com",
+      "via.placeholder.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",
