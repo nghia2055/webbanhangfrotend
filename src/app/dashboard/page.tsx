@@ -9,9 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { collection } from "../redux/slice/collection";
 
 function Dashboard() {
-  useEffect(() => {
-    setItem("trangchu");
-  }, []);
   const route = useRouter();
   const listDashboard = [
     { url: "trangchu", title: "Trang Chủ" },
@@ -21,11 +18,6 @@ function Dashboard() {
     { url: "nguoidung", title: " Người Dùng" },
     { url: "caidat", title: " Cài Đặt" },
   ];
-  const [item, setItem] = useState<string>("");
-
-  const handleItemDashboard = (item: string) => {
-    setItem(item);
-  };
 
   const dispatch = useDispatch();
 

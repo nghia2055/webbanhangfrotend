@@ -14,7 +14,7 @@ function IconHeader() {
     (state: RootState) => state.auth.isLoggedIn
   );
 
-  const handleOpenDashboard = (e: any) => {
+  const handleOpenDashboard = () => {
     Route.push("/dashboard");
   };
 

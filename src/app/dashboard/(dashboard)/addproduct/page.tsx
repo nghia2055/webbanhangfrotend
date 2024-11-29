@@ -35,7 +35,7 @@ const schema = z.object({
     .refine(
       (files) =>
         files &&
-        Array.from(files).every((file: any) => file.size <= 2 * 1024 * 1024),
+        Array.from(files).every((file) => file.size <= 2 * 1024 * 1024),
       { message: "Mỗi ảnh phải nhỏ hơn 2MB" }
     ),
 });
@@ -140,12 +140,12 @@ const ProductForm: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const subCategories =
-    categories.find((item: any) => item.name === selectedCategory)
-      ?.SubCollection || [];
+    categories.find((item) => item.name === selectedCategory)?.SubCollection ||
+    [];
   console.log("subCategories", subCategories);
   const options =
-    subCategories.find((item: any) => item.name === selectedSubCategory)
-      ?.options || [];
+    subCategories.find((item) => item.name === selectedSubCategory)?.options ||
+    [];
   console.log("option", options);
   const dispatch = useDispatch();
 
@@ -239,7 +239,7 @@ const ProductForm: React.FC = () => {
             }}
           >
             <option value="">-- Chọn danh mục chính --</option>
-            {categories.map((cat: any) => (
+            {categories.map((cat) => (
               <option key={cat.name} value={cat.name}>
                 {cat.name}
               </option>
@@ -273,7 +273,7 @@ const ProductForm: React.FC = () => {
               }}
             >
               <option value="">-- Chọn danh mục con --</option>
-              {subCategories.map((sub: any) => (
+              {subCategories.map((sub) => (
                 <option key={sub.name} value={sub.name}>
                   {sub.name}
                 </option>
@@ -294,7 +294,7 @@ const ProductForm: React.FC = () => {
               onChange={(e) => setSelectedOption(e.target.value)}
             >
               <option value="">-- Chọn tùy chọn --</option>
-              {options.map((opt: any) => (
+              {options.map((opt) => (
                 <option key={opt} value={opt}>
                   {opt}
                 </option>
@@ -369,7 +369,7 @@ const ProductForm: React.FC = () => {
         {/* Hiển thị ảnh preview */}
         {watchImages && watchImages.length > 0 && (
           <div className="mt-4 grid grid-cols-3 gap-2">
-            {Array.from(watchImages).map((file: any, index: any) => (
+            {Array.from(watchImages).map((file, index) => (
               <img
                 key={index}
                 src={URL.createObjectURL(file)}
