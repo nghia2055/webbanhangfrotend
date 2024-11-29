@@ -362,7 +362,7 @@ const ProductForm: React.FC = () => {
             }`}
           />
           {errors.productImages && (
-            <p className="text-red-500 text-sm mt-2">"Có lỗi xảy ra"</p>
+            <p className="text-red-500 text-sm mt-2">Có lỗi xảy ra</p>
           )}
         </div>
 

@@ -1,6 +1,5 @@
 "use client";
 import { RootState } from "@/app/redux/store";
-import { useEffect, useState } from "react";
 import ProductForm from "./(dashboard)/addproduct/page";
 import { useRouter } from "next/navigation";
 import HomePage from "./(dashboard)/home/page";

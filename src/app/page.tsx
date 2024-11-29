@@ -20,12 +20,12 @@ export default function Home() {
           </Link>
           <div className="flex flex-col gap-6 justify-center items-center">
             <p className="font-bold md:text-2xl text-center">
-              "My Three-Step Process to Healthy, Clean, Glorious, Glowing Skin!"
+              My Three-Step Process to Healthy, Clean, Glorious, Glowing Skin!
             </p>
             <p className="font-custom">"Katherine McPhee Foster"</p>
             <p>
-              "The Essentials Kit includes everything the actress & singer needs
-              for an instant refresh"
+              The Essentials Kit includes everything the actress & singer needs
+              for an instant refresh
             </p>
             <button className="bg-nav rounded-full w-96 h-20 font-bold hover:bg-black hover:text-nav duration-200 ease-linear ">
               SHOP THE ESSENTIALS KIT
