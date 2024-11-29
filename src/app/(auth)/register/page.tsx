@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button";
 
-export const formSchema = z
+const formSchema = z
   .object({
     email: z.string().email(),
     password: z.string().min(6).max(100),
