@@ -22,7 +22,7 @@ export default function Home() {
             <p className="font-bold md:text-2xl text-center">
               My Three-Step Process to Healthy, Clean, Glorious, Glowing Skin!
             </p>
-            <p className="font-custom">"Katherine McPhee Foster"</p>
+            <p className="font-custom">Katherine McPhee Foster</p>
             <p>
               The Essentials Kit includes everything the actress & singer needs
               for an instant refresh
@@ -130,7 +130,7 @@ export default function Home() {
         </section>
         <section className="flex justify-center flex-col items-center gap-y-3">
           <h1 className="font-custom md:text-4xl md:mt-16 md:mb-11 text-xs my-3">
-            NOT SURE WHAT YOU'RE LOOKING FOR?
+            NOT SURE WHAT YOU'RE LOOKING FOR
             <p className="font-bold text-center">Shop these crowd pleasers</p>
           </h1>
           <div className="grid grid-cols-4 gap-7 w-full md:px-20 px-4 ">

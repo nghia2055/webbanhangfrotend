@@ -6,6 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { collection } from "@/app/redux/slice/collection";
 import { useDispatch } from "react-redux";
+import Image from "next/image";
 
 // Schema validate bằng Zod
 const schema = z.object({
@@ -370,7 +371,7 @@ const ProductForm: React.FC = () => {
         {watchImages && watchImages.length > 0 && (
           <div className="mt-4 grid grid-cols-3 gap-2">
             {Array.from(watchImages).map((file, index) => (
-              <img
+              <Image
                 key={index}
                 src={URL.createObjectURL(file)}
                 alt={`Preview ${index + 1}`}

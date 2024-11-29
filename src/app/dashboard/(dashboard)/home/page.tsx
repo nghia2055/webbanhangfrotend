@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 
 const HomePage: React.FC = () => {
@@ -99,7 +100,7 @@ const HomePage: React.FC = () => {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <img
+            <Image
               src="https://via.placeholder.com/300"
               alt="Product 1"
               className="w-full h-48 object-cover rounded-lg"
@@ -116,7 +117,7 @@ const HomePage: React.FC = () => {
             </a>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <img
+            <Image
               src="https://via.placeholder.com/300"
               alt="Product 2"
               className="w-full h-48 object-cover rounded-lg"
@@ -133,7 +134,7 @@ const HomePage: React.FC = () => {
             </a>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <img
+            <Image
               src="https://via.placeholder.com/300"
               alt="Product 3"
               className="w-full h-48 object-cover rounded-lg"
