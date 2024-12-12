@@ -16,6 +16,7 @@ type data = {
 };
 
 export default async function Home() {
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   const getProductHome = async () => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
