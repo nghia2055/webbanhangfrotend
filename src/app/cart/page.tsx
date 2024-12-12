@@ -24,9 +24,9 @@ function Cart({
   hidden,
   reducePay,
 }: {
-  pad: string;
-  hidden: boolean;
-  reducePay: (data: number) => void;
+  pad: string | undefined;
+  hidden: boolean | false;
+  reducePay: (data: number) => void | undefined;
 }) {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
