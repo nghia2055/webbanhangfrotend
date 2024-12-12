@@ -45,7 +45,13 @@ export default async function Home() {
                 key={index}
               >
                 <div className="flex flex-col items-center ">
-                  <Link href={`/collection/${item.collection}/${item._id}`}>
+                  <Link
+                    href={
+                      item.collection && item._id
+                        ? `/collection/${item.collection}/${item._id}`
+                        : "/"
+                    }
+                  >
                     <Image
                       src={src}
                       width={500}
@@ -55,7 +61,7 @@ export default async function Home() {
                     />
                   </Link>
                   <Link
-                    href={`/${item.collection}`}
+                    href={item.collection ? `/${item.collection}` : "/"}
                     className="text-xs bg-[rgb(249,248,248)] w-full text-center opacity-55"
                   >
                     {item.collection}
