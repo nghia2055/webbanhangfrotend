@@ -104,8 +104,8 @@ function Checkout() {
         </div>
         <div className="p-8 border-2">
           <>
-            <div className={`px-4 flex pt-[200] mb-10`}>
-              <div className={` w-4/5`}>
+            <div className={`px-4 flex mb-10`}>
+              <div className={` w-full`}>
                 <div className="font-bold text-lg">Giỏ Hàng Của Bạn</div>
                 <br />
                 <div className="grid grid-cols-15 flex-grow text-center border-2">

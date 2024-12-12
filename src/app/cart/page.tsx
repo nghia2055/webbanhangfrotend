@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import Image from "next/image";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { remove } from "../redux/slice/sliceaddproduct";
 import { useRouter } from "next/navigation";
 
