@@ -4,13 +4,14 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: string;
+  params: Promise<{ [key: string]: string | string }>;
+  searchParams: Promise<{ [key: string]: string | string }>;
 }) {
   const searchParam = await searchParams;
-  const param = await params;
+  const par = await params;
+  const param = par.slug;
 
-  const decodedSlug = decodeURIComponent(param.slug);
+  const decodedSlug = decodeURIComponent(param);
 
   const getProducts = async () => {
     try {

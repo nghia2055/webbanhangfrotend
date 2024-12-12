@@ -1,8 +1,9 @@
 import Productitem from "@/app/collection/component/product/productitem";
 import Header from "../../component/header/header";
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-  const searchParam = await params.slug;
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const search = await params;
+  const searchParam = search.slug;
 
   const getProducts = async () => {
     try {
