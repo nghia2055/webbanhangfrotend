@@ -18,6 +18,9 @@ type Data = {
   size: string;
   amount: number;
 };
+export const pad = undefined;
+export const hidden = false;
+export const reducePay = () => {};
 
 function Cart({
   pad = undefined,
