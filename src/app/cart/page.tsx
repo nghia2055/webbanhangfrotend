@@ -20,9 +20,9 @@ type Data = {
 };
 
 function Cart({
-  pad,
-  hidden,
-  reducePay,
+  pad = undefined,
+  hidden = false,
+  reducePay = () => {},
 }: {
   pad: string | undefined;
   hidden: boolean | false;
