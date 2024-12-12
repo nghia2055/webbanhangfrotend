@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import Cart from "../page";
 
@@ -10,7 +10,7 @@ function Checkout() {
   const [modal, setModal] = useState(true);
   const [reduce, setReduce] = useState<number>(0);
 
-  const handleNumber = (e: any) => {
+  const handleNumber = (e: ChangeEvent<HTMLInputElement>) => {
     setNumberPhone(e.target.value);
   };
   const handleCheck = () => {

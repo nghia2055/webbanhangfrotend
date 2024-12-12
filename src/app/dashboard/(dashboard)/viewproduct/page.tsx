@@ -41,18 +41,20 @@ export default function ViewProduct() {
       const fetchData = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/removeproduct/all?id=${item}`
       );
-
-      toast("Bạn đã xóa sản phẩm thành công.", {
-        action: {
-          label: "✖", // Biểu tượng nút đóng
-          onClick: (t) => toast.dismiss(), // Đóng Toast
-        },
-      });
+      if (fetchData.ok) {
+        toast("Bạn đã xóa sản phẩm thành công.", {
+          action: {
+            label: "✖", // Biểu tượng nút đóng
+            onClick: () => toast.dismiss(), // Đóng Toast
+          },
+        });
+      }
     } catch (error) {
+      console.log(error);
       toast("Xóa thất bại.", {
         action: {
           label: "✖", // Biểu tượng nút đóng
-          onClick: (t) => toast.dismiss(), // Đóng Toast
+          onClick: () => toast.dismiss(), // Đóng Toast
         },
       });
     }

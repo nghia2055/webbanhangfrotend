@@ -7,6 +7,18 @@ import { useEffect, useMemo } from "react";
 import { remove } from "../redux/slice/sliceaddproduct";
 import { useRouter } from "next/navigation";
 
+type Data = {
+  collection: string;
+  _id: string;
+  createdAt: string;
+  description: string;
+  price: number;
+  productImages: string[];
+  productName: string;
+  size: string;
+  amount: number;
+};
+
 function Cart({
   pad,
   hidden,
@@ -71,7 +83,7 @@ function Cart({
               <span>Tổng cộng</span>
             </div>
           </div>
-          {data.map((item: any, index: number) => {
+          {data.map((item: Data, index: number) => {
             return (
               <div
                 className="grid grid-cols-15 flex-grow text-center border-b-2 border-l-2 border-r-2 place-items-center "

@@ -77,11 +77,11 @@ function Login() {
             },
           })
             .then((res) => res.json())
-            .then((res) => {
+            .then(() => {
               toast("Đăng sản phẩm thành công", {
                 action: {
                   label: "✖", // Biểu tượng nút đóng
-                  onClick: (t) => toast.dismiss(), // Đóng Toast
+                  onClick: () => toast.dismiss(), // Đóng Toast
                 },
               });
             })
@@ -91,6 +91,7 @@ function Login() {
           router.push("/");
         }
       } catch (err) {
+        console.log(err);
         setErrorLogin(true);
       }
     };

@@ -18,7 +18,6 @@ type data = {
   productImages: string[];
   productName: string;
   size: Array<"XL" | "L" | string>;
-  subCollection: string;
 };
 
 function ProductItem({ productsItemsData }: { productsItemsData: data }) {

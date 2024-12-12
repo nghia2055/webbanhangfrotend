@@ -48,11 +48,11 @@ function Collection() {
       .then((res) => {
         return res.json();
       })
-      .then((res) => {
+      .then(() => {
         toast("Bạn đã thêm thành công.", {
           action: {
             label: "✖", // Biểu tượng nút đóng
-            onClick: (t) => toast.dismiss(), // Đóng Toast
+            onClick: () => toast.dismiss(), // Đóng Toast
           },
         });
         reset();

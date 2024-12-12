@@ -1,7 +1,7 @@
 import Productitem from "@/app/collection/component/product/productitem";
 import Header from "../../component/header/header";
 
-const Page = async ({ params }: any) => {
+const Page = async ({ params }: { params: { slug: string } }) => {
   const searchParam = await params.slug;
 
   const getProducts = async () => {

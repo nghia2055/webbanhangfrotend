@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
   const cookieStore = await cookies();
   try {
     cookieStore.set({
@@ -10,7 +10,6 @@ export async function GET(request: Request) {
       httpOnly: true,
       path: "/",
     });
-
     cookieStore.set({
       name: "refresh_Token",
       value: "",

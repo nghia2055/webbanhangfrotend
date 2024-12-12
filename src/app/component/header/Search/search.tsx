@@ -1,11 +1,23 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { motion } from "framer-motion";
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+
+type Data = {
+  collection: string;
+  _id: string;
+  createdAt: string;
+  description: string;
+  price: number;
+  productImages: string[];
+  productName: string;
+  size: string;
+  amount: number;
+};
 
 function Search() {
   const [search, setSearch] = useState(false);
@@ -19,7 +31,7 @@ function Search() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleChange = async (e: any) => {
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     if (!e.target.value.trim()) {
       setData([]);
@@ -97,7 +109,7 @@ function Search() {
             </div>
             <p className="font-bold mt-3">TRENDING</p>
             <div>
-              {data.map((item: any, index) => {
+              {data.map((item: Data, index) => {
                 return (
                   <Link
                     href={`/collection/${item.collection}/${item._id}`}

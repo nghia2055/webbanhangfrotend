@@ -80,7 +80,7 @@ function Register() {
         toast("Bạn đã đăng kí tài khoản thành công.", {
           action: {
             label: "✖", // Biểu tượng nút đóng
-            onClick: (t) => toast.dismiss(), // Đóng Toast
+            onClick: () => toast.dismiss(), // Đóng Toast
           },
         });
         form.reset();

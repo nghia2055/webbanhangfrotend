@@ -74,7 +74,7 @@ const Header = async () => {
                             item.subCollection.map(
                               (sub: SubCollection, subIndex: number) => (
                                 <li
-                                  key={sub._id}
+                                  key={`index-${subIndex}`}
                                   className="my-5 px-8 cursor-pointer "
                                 >
                                   {/* Hiển thị tên của subCollection */}

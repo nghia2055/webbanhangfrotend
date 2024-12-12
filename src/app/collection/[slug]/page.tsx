@@ -1,6 +1,12 @@
 import ListProduct from "../component/product/listproduct";
 
-export default async function Page({ params, searchParams }: any) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: string;
+}) {
   const searchParam = await searchParams;
   const param = await params;
 

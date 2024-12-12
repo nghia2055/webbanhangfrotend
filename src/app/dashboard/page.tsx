@@ -47,7 +47,7 @@ function Dashboard() {
       },
     })
       .then((res) => res.json())
-      .then((res) => {
+      .then(() => {
         route.push("/");
       })
       .catch((err) => {

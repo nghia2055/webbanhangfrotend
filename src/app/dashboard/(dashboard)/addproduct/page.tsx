@@ -59,7 +59,6 @@ const ProductForm: React.FC = () => {
     reset,
     setValue,
     formState: { errors },
-    watch,
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -95,11 +94,11 @@ const ProductForm: React.FC = () => {
       credentials: "include",
     })
       .then((respone) => respone.json())
-      .then((res) => {
+      .then(() => {
         toast("Đăng sản phẩm thành công", {
           action: {
             label: "✖", // Biểu tượng nút đóng
-            onClick: (t) => toast.dismiss(), // Đóng Toast
+            onClick: () => toast.dismiss(), // Đóng Toast
           },
         });
         setFormattedPrice("");
@@ -110,14 +109,14 @@ const ProductForm: React.FC = () => {
         toast("Đăng sản phẩm không thành công", {
           action: {
             label: "✖", // Biểu tượng nút đóng
-            onClick: (t) => toast.dismiss(), // Đóng Toast
+            onClick: () => toast.dismiss(), // Đóng Toast
           },
         })
       );
   };
 
   const handlePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let pic: File[] = [];
+    const pic: File[] = [];
     const files = e.target.files;
     if (files) {
       Array.from(files).map((item: File) => {
@@ -176,7 +175,6 @@ const ProductForm: React.FC = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubCategory, setSelectedSubCategory] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
 
   const subCategories =
     categories.find((item) => item.name === selectedCategory)?.SubCollection ||
@@ -275,7 +273,6 @@ const ProductForm: React.FC = () => {
               setValue("collection", e.target.value);
               setSelectedCategory(e.target.value);
               setSelectedSubCategory("");
-              setSelectedOption("");
             }}
           >
             <option value="">-- Chọn danh mục chính --</option>
@@ -311,7 +308,6 @@ const ProductForm: React.FC = () => {
                 setValue("subCollection", e.target.value);
 
                 setSelectedSubCategory(e.target.value);
-                setSelectedOption("");
               }}
             >
               <option value="">-- Chọn danh mục con --</option>
@@ -335,7 +331,6 @@ const ProductForm: React.FC = () => {
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
               onChange={(e) => {
                 setValue("options", e.target.value);
-                setSelectedOption(e.target.value);
               }}
             >
               <option value="">-- Chọn tùy chọn --</option>
@@ -427,7 +422,7 @@ const ProductForm: React.FC = () => {
                 />
                 <span
                   onClick={() => {
-                    let pic = [...picture];
+                    const pic = [...picture];
                     pic.splice(index, 1);
                     setPicture(pic);
                   }}

@@ -9,7 +9,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 function Setting() {
   // Fetch user data from Redux store
-  const data: any = useSelector((item: RootState) => item.auth.user);
+  const data: { user: string; email: string } = useSelector(
+    (item: RootState) => item.auth.user
+  );
 
   // Define validation schema using Zod
   const formSchema = z

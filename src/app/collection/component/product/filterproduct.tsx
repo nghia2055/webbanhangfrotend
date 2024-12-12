@@ -23,7 +23,6 @@ type sub = {
 };
 
 function FilterProduct({
-  productsData = [],
   Subcollection = [],
 }: {
   productsData: data[];

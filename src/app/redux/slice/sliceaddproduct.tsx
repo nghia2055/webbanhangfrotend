@@ -8,7 +8,7 @@ type Data = {
   productImages: string[];
   productName: string;
   size: string;
-  subCollection: string;
+
   amount: number;
 };
 
