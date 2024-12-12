@@ -15,17 +15,16 @@ type data = {
   _id: string;
 };
 
-const getProductHome = async () => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 export default async function Home() {
+  const getProductHome = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const data = await getProductHome();
 
   return (
