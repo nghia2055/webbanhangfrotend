@@ -19,7 +19,6 @@ type sub = {
 };
 function ProductItems({
   productsData = [],
-  Subcollection = [],
 }: {
   productsData?: data[];
   Subcollection: sub[];
