@@ -3,13 +3,17 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
 const schema = z.object({
-  collection: z.string().refine((data) => data.length >= 1, {
-    message: "Hãy nhập collection",
-  }),
-  SubCollection: z.string(),
-  OptionSubCollection: z.string(),
+  collection: z
+    .string()
+    .trim()
+    .refine((data) => data.length >= 1, {
+      message: "Hãy nhập collection",
+    }),
+  SubCollection: z.string().trim(),
+  OptionSubCollection: z.string().trim(),
 });
 type FormValues = z.infer<typeof schema>;
 
@@ -45,7 +49,12 @@ function Collection() {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
+        toast("Bạn đã thêm thành công.", {
+          action: {
+            label: "✖", // Biểu tượng nút đóng
+            onClick: (t) => toast.dismiss(), // Đóng Toast
+          },
+        });
         reset();
       })
       .catch((err) => {

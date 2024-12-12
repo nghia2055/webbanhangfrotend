@@ -19,6 +19,8 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -26,8 +28,15 @@ const formSchema = z.object({
 });
 
 function Login() {
-  const dispatch = useDispatch<AppDispatch>();
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
+
+  const handleBackHome = () => {
+    router.push("/");
+  };
+
+  const dispatch = useDispatch<AppDispatch>();
   function onSubmit(values: z.infer<typeof formSchema>) {
     const payload = {
       email: values.email,
@@ -36,24 +45,53 @@ function Login() {
     const Login = async () => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-          method: "POST",
+          method: "POST", // Nếu dùng cookie
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
         });
-        console.log("res", res);
+
         if (!res.ok) {
           console.log("LỖI");
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
         if (res.status === 200) {
-          dispatch(setLogin(true));
+          const token = await res.json();
+          dispatch(
+            setLogin({
+              admin: token.payload.admin,
+              login: true,
+              user: {
+                email: token.payload.email,
+                user: token.payload.user,
+              },
+            })
+          );
+          await fetch("/api/auth", {
+            method: "POST",
+            body: JSON.stringify(token),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              toast("Đăng sản phẩm thành công", {
+                action: {
+                  label: "✖", // Biểu tượng nút đóng
+                  onClick: (t) => toast.dismiss(), // Đóng Toast
+                },
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
           router.push("/");
         }
       } catch (err) {
-        console.log(err);
+        setErrorLogin(true);
       }
     };
     Login();
@@ -69,6 +107,15 @@ function Login() {
   return (
     <>
       <div className="bg-gradient-to-r from-blue-500 to-green-500 w-full h-screen bg-opacity-60">
+        <div className="text-end text-3xl font-bold text-red-600 p-10 ">
+          <Button
+            variant="secondary"
+            className="bg-green-700 opacity-80"
+            onClick={handleBackHome}
+          >
+            X
+          </Button>
+        </div>
         <div className="container sm:mx-auto absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex justify-center mx-auto w-full sm:h-[500] rounded-3xl overflow-hidden sm:w-[1000] ">
           <div className="w-1/2 bg-white flex justify-center items-center flex-col gap-5 bg-opacity-10">
             <span className="text-white text-center font-thin text-sm">
@@ -109,17 +156,33 @@ function Login() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-black">Mật Khẩu</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="Mật khẩu"
-                          {...field}
-                        />
-                      </FormControl>
+                      <div className="relative flex">
+                        <FormControl>
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Mật khẩu"
+                            {...field}
+                          />
+                        </FormControl>
+                        <button
+                          type="button"
+                          className=" absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-600"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? "Ẩn" : "Hiện"}
+                        </button>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                {errorLogin ? (
+                  <span className="text-red-500 text-sm">
+                    Tài khoản hoặc mật khẩu không đúng
+                  </span>
+                ) : (
+                  ""
+                )}
                 <div className="text-center pt-10">
                   <Button
                     type="submit"

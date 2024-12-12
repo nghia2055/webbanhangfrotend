@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { collection } from "@/app/redux/slice/collection";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
+import { toast } from "sonner";
+import { AppDispatch } from "@/app/redux/store";
 
 // Schema validate bằng Zod
 const schema = z.object({
@@ -16,7 +18,9 @@ const schema = z.object({
   price: z.string().refine((value) => /^\d+$/.test(value.replace(/\./g, "")), {
     message: "Giá phải là một số hợp lệ",
   }),
-  category: z.string().nonempty("Bạn chưa có collection"),
+  collection: z.string().nonempty("Bạn chưa chọn danh mục"),
+  subCollection: z.string(),
+  options: z.string(),
   size: z
     .array(z.enum(["S", "M", "L", "XL"]))
     .min(1, { message: "Vui lòng chọn ít nhất một kích cỡ" }),
@@ -47,6 +51,8 @@ type FormValues = z.infer<typeof schema>;
 
 const ProductForm: React.FC = () => {
   const [formattedPrice, setFormattedPrice] = useState(""); // Giá trị hiển thị
+  const [picture, setPicture] = useState<File[]>([]);
+
   const {
     register,
     handleSubmit,
@@ -59,7 +65,9 @@ const ProductForm: React.FC = () => {
     defaultValues: {
       productName: "", // Giá trị mặc định là rỗng
       price: "",
-      category: "",
+      collection: "",
+      subCollection: "",
+      options: "",
       size: [],
       description: "",
       productImages: [],
@@ -71,31 +79,59 @@ const ProductForm: React.FC = () => {
     const formData = new FormData();
     formData.append("productName", data.productName);
     formData.append("price", data.price.replace(/\./g, ""));
+    formData.append("collection", data.collection);
+    formData.append("subCollection", data.subCollection);
+    formData.append("options", data.options);
     formData.append("size", JSON.stringify(data.size));
     formData.append("description", data.description);
-    for (let i = 0; i < data.productImages.length; i++) {
-      formData.append("productImages", data.productImages[i]); // 'images' là tên trường mà bạn sẽ sử dụng trên server
+
+    for (let i = 0; i < picture.length; i++) {
+      formData.append("productImages", picture[i]);
     }
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/addProduct`, {
       method: "POST",
       body: formData,
+      credentials: "include",
     })
       .then((respone) => respone.json())
-      .then((data) => {
-        console.log(data);
-        reset({
-          productName: "", // Reset giá trị cho productName
-          price: "", // Reset giá trị cho price
-          size: [], // Reset size
-          description: "", // Reset description
-          productImages: [], // Reset productImages
+      .then((res) => {
+        toast("Đăng sản phẩm thành công", {
+          action: {
+            label: "✖", // Biểu tượng nút đóng
+            onClick: (t) => toast.dismiss(), // Đóng Toast
+          },
         });
+        setFormattedPrice("");
+        reset();
+        setPicture([]);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch(() =>
+        toast("Đăng sản phẩm không thành công", {
+          action: {
+            label: "✖", // Biểu tượng nút đóng
+            onClick: (t) => toast.dismiss(), // Đóng Toast
+          },
+        })
+      );
   };
 
-  const watchImages = watch("productImages");
+  const handlePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let pic: File[] = [];
+    const files = e.target.files;
+    if (files) {
+      Array.from(files).map((item: File) => {
+        const isDuplicate = picture.some((data) => data.name === item.name);
+
+        if (!isDuplicate) {
+          pic.push(item);
+        }
+      });
+      const updatedPictures = [...picture, ...pic];
+      setPicture(updatedPictures);
+      setValue("productImages", updatedPictures); // Array.from(files) chỉ được gọi nếu files != null
+    }
+  };
 
   // Hàm định dạng giá trị tiền tệ
   const formatCurrency = (value: string): string => {
@@ -145,12 +181,12 @@ const ProductForm: React.FC = () => {
   const subCategories =
     categories.find((item) => item.name === selectedCategory)?.SubCollection ||
     [];
-  console.log("subCategories", subCategories);
+
   const options =
     subCategories.find((item) => item.name === selectedSubCategory)?.options ||
     [];
-  console.log("option", options);
-  const dispatch = useDispatch();
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleCollection = () => {
     dispatch(collection("collection"));
@@ -227,15 +263,16 @@ const ProductForm: React.FC = () => {
         </div> */}
 
         {/* option */}
+
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Danh mục chính:
           </label>
           <select
-            {...register("category")}
+            {...register("collection")}
             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-            value={selectedCategory}
             onChange={(e) => {
+              setValue("collection", e.target.value);
               setSelectedCategory(e.target.value);
               setSelectedSubCategory("");
               setSelectedOption("");
@@ -248,15 +285,15 @@ const ProductForm: React.FC = () => {
               </option>
             ))}
           </select>
-          {errors.category && (
+          {errors.collection && (
             <p className="text-red-500 text-sm mt-2">
-              {errors.category.message}.{"  "}
-              <div
+              {errors.collection.message}.{"  "}
+              <span
                 className="underline cursor-pointer"
                 onClick={handleCollection}
               >
                 Hãy tạo ngay
-              </div>
+              </span>
             </p>
           )}
         </div>
@@ -268,9 +305,11 @@ const ProductForm: React.FC = () => {
               Danh mục con:
             </label>
             <select
+              {...register("subCollection")}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-              value={selectedSubCategory}
               onChange={(e) => {
+                setValue("subCollection", e.target.value);
+
                 setSelectedSubCategory(e.target.value);
                 setSelectedOption("");
               }}
@@ -292,9 +331,12 @@ const ProductForm: React.FC = () => {
               Tùy chọn:
             </label>
             <select
+              {...register("options")}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-              value={selectedOption}
-              onChange={(e) => setSelectedOption(e.target.value)}
+              onChange={(e) => {
+                setValue("options", e.target.value);
+                setSelectedOption(e.target.value);
+              }}
             >
               <option value="">-- Chọn tùy chọn --</option>
               {options.map((opt) => (
@@ -359,6 +401,7 @@ const ProductForm: React.FC = () => {
           <input
             type="file"
             {...register("productImages")}
+            onChange={handlePicture}
             multiple
             className={`mt-1 p-3 border rounded-lg w-full ${
               errors.productImages ? "border-red-500" : "border-gray-300"
@@ -370,17 +413,29 @@ const ProductForm: React.FC = () => {
         </div>
 
         {/* Hiển thị ảnh preview */}
-        {watchImages && watchImages.length > 0 && (
+        {picture && picture.length > 0 && (
           <div className="mt-4 grid grid-cols-3 gap-2">
-            {Array.from(watchImages).map((file, index) => (
-              <Image
-                height={500}
-                width={500}
-                key={index}
-                src={URL.createObjectURL(file as File)}
-                alt={`Preview ${index + 1}`}
-                className="w-full h-24 object-cover border rounded-lg"
-              />
+            {picture.map((file, index) => (
+              <div className="relative" key={index}>
+                <Image
+                  height={500}
+                  width={500}
+                  key={index}
+                  src={URL.createObjectURL(file as File)}
+                  alt={`Preview ${index + 1}`}
+                  className="w-full h-24 object-cover border rounded-lg"
+                />
+                <span
+                  onClick={() => {
+                    let pic = [...picture];
+                    pic.splice(index, 1);
+                    setPicture(pic);
+                  }}
+                  className="absolute top-1/2 right-1/2 text-red-700 font-bold -translate-y-1/2 translate-x-1/2 cursor-pointer "
+                >
+                  XÓA
+                </span>
+              </div>
             ))}
           </div>
         )}

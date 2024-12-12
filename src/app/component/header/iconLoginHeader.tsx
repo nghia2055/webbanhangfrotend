@@ -1,31 +1,26 @@
-"use client";
-
 import { MdAccountCircle } from "react-icons/md";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/redux/store";
 import { FaUsersCog } from "react-icons/fa";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
-function IconHeader() {
-  const Route = useRouter();
-
-  const isLoggedIn: boolean = useSelector(
-    (state: RootState) => state.auth.isLoggedIn
-  );
-
-  const handleOpenDashboard = () => {
-    Route.push("/dashboard");
-  };
+async function IconHeader() {
+  let login = false;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken");
+  if (token?.value) {
+    login = true;
+  } else {
+    login = false;
+  }
 
   return (
     <>
       <Link
-        href={isLoggedIn ? "/dashboard" : "/login"}
+        href={login ? "/dashboard" : "/login"}
         className="w-[40px] h-[35px] flex items-center relative"
       >
-        {isLoggedIn ? (
-          <FaUsersCog className="text-4xl" onClick={handleOpenDashboard} />
+        {login ? (
+          <FaUsersCog className="text-4xl" />
         ) : (
           <MdAccountCircle className="w-[40px] h-[35px] cursor-pointer" />
         )}

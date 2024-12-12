@@ -124,3 +124,7 @@ body {
     background-color: currentColor; /* Tuỳ chọn */
   }
 }
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}

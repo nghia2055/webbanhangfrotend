@@ -1,38 +1,69 @@
 "use client";
-import { RootState } from "@/app/redux/store";
+import { AppDispatch, RootState } from "@/app/redux/store";
 import ProductForm from "./(dashboard)/addproduct/page";
 import { useRouter } from "next/navigation";
 import HomePage from "./(dashboard)/home/page";
 import Collection from "./(dashboard)/collection/page";
 import { useDispatch, useSelector } from "react-redux";
 import { collection } from "../redux/slice/collection";
+import Setting from "./(dashboard)/setting/page";
+import Cart from "./(dashboard)/cart/page";
+import ViewProduct from "./(dashboard)/viewproduct/page";
 
 function Dashboard() {
   const route = useRouter();
+  const admin = useSelector((item: RootState) => item.auth.admin);
+  const login = useSelector((item: RootState) => item.auth.login);
+
   const listDashboard = [
-    { url: "trangchu", title: "Trang Chủ" },
-    { url: "sanpham", title: "Sản Phẩm" },
-    { url: "collection", title: "Collection" },
     { url: "donhang", title: "Đơn Hàng" },
-    { url: "nguoidung", title: " Người Dùng" },
-    { url: "caidat", title: " Cài Đặt" },
+    { url: "dangxuat", title: "Đăng Xuất Tài Khoản" },
   ];
 
-  const dispatch = useDispatch();
+  if (login) {
+    listDashboard.splice(1, 0, { url: "caidat", title: " Cài Đặt" });
+  }
+
+  if (admin) {
+    listDashboard.splice(
+      0,
+      0,
+      { url: "trangchu", title: "Trang Chủ (ADMIN) " },
+      { url: "sanpham", title: "Sản Phẩm (ADMIN)" },
+      { url: "collection", title: "Collection (ADMIN)" },
+      { url: "xemsanpham", title: "Xem Tất Cả Sản Phẩm (ADMIN)" }
+    );
+  }
+  const dispatch = useDispatch<AppDispatch>();
 
   const nghia: string = useSelector(
     (state: RootState) => state.collection.Collection
   );
 
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        route.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="min-h-[1500] bg-nav bg-opacity-20">
-      <div
-        className="text-end pr-11 pt-10  "
-        onClick={() => {
-          route.push("/");
-        }}
-      >
-        <span className="text-cyan-800 rounded-md text-5xl cursor-pointer">
+      <div className="text-end pr-11 pt-10  ">
+        <span
+          onClick={() => {
+            route.push("/");
+          }}
+          className="text-cyan-800 rounded-md text-5xl cursor-pointer"
+        >
           x
         </span>
       </div>
@@ -48,6 +79,9 @@ function Dashboard() {
                       <span
                         className="block py-2 rounded-md hover:bg-blue-700 cursor-pointer"
                         onClick={() => {
+                          if (item.url === "dangxuat") {
+                            handleLogout();
+                          }
                           dispatch(collection(item.url));
                         }}
                       >
@@ -60,17 +94,29 @@ function Dashboard() {
             })}
           </div>
 
-          {nghia === "sanpham" ? (
+          {nghia === "sanpham" && admin ? (
             <div className="col-span-5 px-10 ">
               <ProductForm />
             </div>
-          ) : nghia === "trangchu" ? (
+          ) : nghia === "trangchu" && admin ? (
             <div className="col-span-5 px-10 ">
               <HomePage />
             </div>
-          ) : nghia === "collection" ? (
+          ) : nghia === "collection" && admin ? (
             <div className="col-span-5 px-10 ">
               <Collection />
+            </div>
+          ) : nghia === "caidat" && login ? (
+            <div className="col-span-5 px-10 ">
+              <Setting />
+            </div>
+          ) : nghia === "donhang" ? (
+            <div className="col-span-5 px-10 ">
+              <Cart />
+            </div>
+          ) : nghia === "xemsanpham" && admin ? (
+            <div className="col-span-5 px-10 ">
+              <ViewProduct />
             </div>
           ) : (
             ""
