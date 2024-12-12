@@ -18,19 +18,8 @@ type Data = {
   size: string;
   amount: number;
 };
-export const pad = undefined;
-export const hidden = false;
-export const reducePay = () => {};
 
-function Cart({
-  pad = undefined,
-  hidden = false,
-  reducePay = () => {},
-}: {
-  pad: string | undefined;
-  hidden: boolean | false;
-  reducePay: (data: number) => void | undefined;
-}) {
+function Cart() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector((item: RootState) => item.addproduct.product);
@@ -47,17 +36,10 @@ function Cart({
     router.push("/cart/checkout");
   };
 
-  useEffect(() => {
-    if (reducePay) {
-      reducePay(reduce);
-    }
-  }, [reduce, reducePay]); // Gọi reducePay sau khi tính toán reduce
   return (
     <>
-      <div
-        className={pad ? `px-4 flex mb-10 ${pad}` : `px-4 flex pt-[200] mb-10`}
-      >
-        <div className={hidden ? "w-full" : ` w-4/5`}>
+      <div className={`px-4 flex pt-[200] mb-10`}>
+        <div className={` w-4/5`}>
           <div className="font-bold text-lg">Giỏ Hàng Của Bạn</div>
           <br />
           <div className="grid grid-cols-15 flex-grow text-center border-2">
@@ -139,11 +121,7 @@ function Cart({
           })}
         </div>
         <div
-          className={
-            hidden
-              ? "hidden"
-              : `ml-10 flex flex-col items-center text-center flex-grow border-2 mb-10 p-2 h-48`
-          }
+          className={`ml-10 flex flex-col items-center text-center flex-grow border-2 mb-10 p-2 h-48`}
         >
           <div className="border-2 w-2/3 p-2 mt-10 text-start">
             Tổng: {String(reduce).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

@@ -1,14 +1,29 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 
-import Cart from "../page";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import Image from "next/image";
+import { remove } from "@/app/redux/slice/sliceaddproduct";
+
+type Data = {
+  collection: string;
+  _id: string;
+  createdAt: string;
+  description: string;
+  price: number;
+  productImages: string[];
+  productName: string;
+  size: string;
+  amount: number;
+};
 
 function Checkout() {
   const [numbderPhone, setNumberPhone] = useState("");
   const [modal, setModal] = useState(true);
-  const [reduce, setReduce] = useState<number>(0);
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleNumber = (e: ChangeEvent<HTMLInputElement>) => {
     setNumberPhone(e.target.value);
@@ -21,10 +36,16 @@ function Checkout() {
     } else setModal(false);
   };
 
-  const reducePay = (data: number) => {
-    setReduce(data);
-  };
+  const data = useSelector((item: RootState) => item.addproduct.product);
+  const reduce = useMemo(() => {
+    return data.reduce((initialState, item) => {
+      return initialState + item.price * item.amount;
+    }, 0);
+  }, [data]);
 
+  const handleRemove = (item: string) => {
+    dispatch(remove(item));
+  };
   return (
     <div className="pt-[200] flex gap-x-10 mb-20 px-4 ">
       <div className="w-1/3  ">
@@ -82,7 +103,85 @@ function Checkout() {
           />
         </div>
         <div className="p-8 border-2">
-          <Cart pad={"pt-0"} hidden={true} reducePay={reducePay} />
+          <>
+            <div className={`px-4 flex pt-[200] mb-10`}>
+              <div className={` w-4/5`}>
+                <div className="font-bold text-lg">Giỏ Hàng Của Bạn</div>
+                <br />
+                <div className="grid grid-cols-15 flex-grow text-center border-2">
+                  <div className="col-span-2">
+                    <span>Hình ảnh</span>
+                    {/* <p>ảnh</p> */}
+                  </div>
+                  <div className="col-span-4">
+                    <span>Tên sản phẩm</span>
+                    {/* <div>
+                         <p>Giày</p>
+                         <span>Chọn size: </span>
+                         <span>Điểm thưởng: </span>
+                       </div> */}
+                  </div>
+                  <div className="col-span-2">
+                    <span>Mã hàng</span>
+                  </div>
+                  <div className="col-span-3">
+                    <span>Số lượng</span>
+                  </div>
+                  <div className="col-span-2">
+                    <span>Đơn giá</span>
+                  </div>
+                  <div className="col-span-2">
+                    <span>Tổng cộng</span>
+                  </div>
+                </div>
+                {data.map((item: Data, index: number) => {
+                  return (
+                    <div
+                      className="grid grid-cols-15 flex-grow text-center border-b-2 border-l-2 border-r-2 place-items-center "
+                      key={`index-${index}`}
+                    >
+                      <div className="col-span-2 flex justify-center py-2">
+                        <Image
+                          src={item.productImages[0]}
+                          width={70}
+                          height={70}
+                          alt=""
+                        />
+                      </div>
+                      <div className="col-span-4">
+                        <div>
+                          <p>{item.productName}</p>
+                          <span>Chọn size: {item.size} </span>
+                        </div>
+                      </div>
+                      <div className="col-span-2 space-y-3">
+                        <div>MSN{item._id.slice(19)}</div>
+                        <div
+                          className="text-red-500 text-xs cursor-pointer font-bold"
+                          onClick={() => {
+                            handleRemove(item._id);
+                          }}
+                        >
+                          Xóa
+                        </div>
+                      </div>
+                      <div className="col-span-3">
+                        <span>{item.amount}</span>
+                      </div>
+                      <div className="col-span-2">
+                        <span>
+                          {String(item.price).replace(
+                            /\B(?=(\d{3})+(?!\d))/g,
+                            ","
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
           <div>
             Tổng tiền: {String(reduce).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
           </div>
