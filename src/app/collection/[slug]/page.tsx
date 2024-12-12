@@ -1,4 +1,4 @@
-import ListProduct from "../component/product/listproduct";
+import ListProduct from "../component/listproduct";
 
 export default async function Page({
   params,

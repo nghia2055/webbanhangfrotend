@@ -3,10 +3,9 @@ import Footer from "@/app/component/header/footer";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
-import { add } from "../../../redux/slice/sliceaddproduct";
+import { add, amount } from "../../redux/slice/sliceaddproduct";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../redux/store";
-import { amount } from "../../../redux/slice/sliceaddproduct";
+import { AppDispatch, RootState } from "../../redux/store";
 import { throttle } from "lodash";
 
 type data = {

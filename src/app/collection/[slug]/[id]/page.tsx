@@ -1,4 +1,4 @@
-import Productitem from "../../component/productitem/productitem";
+import Productitem from "../../component/productitem";
 
 type data = {
   collection: string;

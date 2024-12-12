@@ -27,7 +27,7 @@ const formSchema = z.object({
   password: z.string().min(6).max(100),
 });
 
-function Login() {
+function Page() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
@@ -202,4 +202,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Page;

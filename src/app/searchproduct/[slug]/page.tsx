@@ -1,4 +1,4 @@
-import Productitem from "@/app/collection/component/product/productitem";
+import Productitem from "@/app/collection/component/productitemone";
 import Header from "../../component/header/header";
 
 const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {

@@ -1,5 +1,5 @@
 import FilterProduct from "./filterproduct";
-import ProductItems from "./productitem";
+import ProductItems from "./productitemone";
 
 type data = {
   collection: string;

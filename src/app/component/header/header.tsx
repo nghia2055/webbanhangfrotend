@@ -1,7 +1,7 @@
 import IconHeader from "./iconLoginHeader";
-import Search from "./Search/search";
+import Search from "./search";
 import Link from "next/link";
-import Cart from "../shopping/cart";
+import Cart from "./cart";
 type SubCollection = {
   name: string;
   options: string[];

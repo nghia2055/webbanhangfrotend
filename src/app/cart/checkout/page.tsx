@@ -20,7 +20,7 @@ type Data = {
   amount: number;
 };
 
-function Checkout() {
+function Page() {
   const [numbderPhone, setNumberPhone] = useState("");
   const [modal, setModal] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
@@ -196,4 +196,4 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default Page;

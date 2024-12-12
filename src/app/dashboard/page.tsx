@@ -1,16 +1,16 @@
 "use client";
 import { AppDispatch, RootState } from "@/app/redux/store";
-import ProductForm from "./(dashboard)/addproduct/page";
+import ProductForm from "./addproduct";
 import { useRouter } from "next/navigation";
-import HomePage from "./(dashboard)/home/page";
-import Collection from "./(dashboard)/collection/page";
+import HomePage from "./home";
+import Collection from "./collection";
 import { useDispatch, useSelector } from "react-redux";
 import { collection } from "../redux/slice/collection";
-import Setting from "./(dashboard)/setting/page";
-import Cart from "./(dashboard)/cart/page";
-import ViewProduct from "./(dashboard)/viewproduct/page";
+import Setting from "./setting";
+import Cart from "./cart";
+import ViewProduct from "./viewproduct";
 
-function Dashboard() {
+function Page() {
   const route = useRouter();
   const admin = useSelector((item: RootState) => item.auth.admin);
   const login = useSelector((item: RootState) => item.auth.login);
@@ -127,4 +127,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Page;

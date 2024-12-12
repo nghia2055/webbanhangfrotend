@@ -37,7 +37,7 @@ const formSchema = z
     }
   });
 
-function Register() {
+function Page() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -236,4 +236,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Page;

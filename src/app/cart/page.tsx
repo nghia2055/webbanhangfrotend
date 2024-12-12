@@ -19,7 +19,7 @@ type Data = {
   amount: number;
 };
 
-function Cart() {
+function Page() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector((item: RootState) => item.addproduct.product);
@@ -135,4 +135,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Page;
