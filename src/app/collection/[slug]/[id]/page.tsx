@@ -21,6 +21,9 @@ export default async function Page({
 
   const getProducts = async () => {
     try {
+      if (!process.env.NEXT_PUBLIC_API_URL) {
+        throw new Error("API URL is undefined");
+      }
       const respone = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/productitems/${id}`
       );

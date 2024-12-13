@@ -3,13 +3,7 @@ import Image from "next/image";
 import Header from "@/app/component/header/header";
 import Footer from "@/app/component/header/footer";
 
-export const getServerSideProps = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
-  const data = await res.json();
-  return { props: { data } };
-};
-
-type Data = {
+type data = {
   collection: string;
   description: string;
   options: string[];
@@ -21,13 +15,27 @@ type Data = {
   _id: string;
 };
 
-export default async function Page({ data }: { data: Data[] }) {
+export default async function Home() {
+  const getProductHome = async () => {
+    try {
+      if (!process.env.NEXT_PUBLIC_API_URL) {
+        throw new Error("API URL is undefined");
+      }
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const data = await getProductHome();
+
   return (
     <>
       <Header />
       <main className="max-w-[1480px] mx-auto md:pt-48 grid gap-y-6 ">
         <section className="grid grid-cols-5 gap-x-10 pb-10">
-          {data?.map((item: Data, index: number) => {
+          {data?.map((item: data, index: number) => {
             const price = String(item.price).replace(
               /\B(?=(\d{3})+(?!\d))/g,
               "."
