@@ -15,7 +15,9 @@ type Collection = {
 
 const FetchDataCollection = async () => {
   try {
-    const res = await fetch("http://127.0.0.1:8080/collection");
+    const res = await fetch(
+      "https://backendwebbanhang-sigma.vercel.app/collection"
+    );
     return res.json();
   } catch (err) {
     console.log(err);

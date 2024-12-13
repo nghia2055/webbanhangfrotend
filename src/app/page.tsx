@@ -18,7 +18,9 @@ type data = {
 export default async function Home() {
   const getProductHome = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8080/producthome");
+      const res = await fetch(
+        "https://backendwebbanhang-sigma.vercel.app/producthome"
+      );
       const data = await res.json();
       return data;
     } catch (err) {

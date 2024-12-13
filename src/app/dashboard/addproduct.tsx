@@ -88,7 +88,7 @@ const ProductForm: React.FC = () => {
       formData.append("productImages", picture[i]);
     }
 
-    fetch(`http://127.0.0.1:8080/addProduct`, {
+    fetch(`https://backendwebbanhang-sigma.vercel.app/addProduct`, {
       method: "POST",
       body: formData,
       credentials: "include",
@@ -159,11 +159,14 @@ const ProductForm: React.FC = () => {
   useEffect(() => {
     const fetchAPIMenu = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8080/menu/add`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await fetch(
+          `https://backendwebbanhang-sigma.vercel.app/menu/add`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const resjson = await res.json();
         setCategories(resjson.Menucollection);
       } catch (error) {

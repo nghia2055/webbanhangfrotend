@@ -8,7 +8,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const getProducts = async () => {
     try {
       const respone = await fetch(
-        `http://127.0.0.1:8080/searchproductall/${searchParam}`
+        `https://backendwebbanhang-sigma.vercel.app/searchproductall/${searchParam}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);

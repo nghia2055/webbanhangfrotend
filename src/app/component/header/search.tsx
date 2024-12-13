@@ -38,7 +38,7 @@ function Search() {
     } else {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8080/search/${e.target.value}`
+          `https://backendwebbanhang-sigma.vercel.app/search/${e.target.value}`
         );
         const data = await res.json();
         setData(data);
