@@ -23,6 +23,9 @@ export default function ViewProduct() {
   useEffect(() => {
     const res = async () => {
       try {
+        if (!process.env.NEXT_PUBLIC_API_URL) {
+          throw new Error("API URL is undefined");
+        }
         const fetchData = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/product/all`
         );
@@ -38,6 +41,9 @@ export default function ViewProduct() {
 
   const handleRemove = async (item: string) => {
     try {
+      if (!process.env.NEXT_PUBLIC_API_URL) {
+        throw new Error("API URL is undefined");
+      }
       const fetchData = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/removeproduct/all?id=${item}`
       );

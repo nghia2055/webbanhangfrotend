@@ -15,6 +15,9 @@ type Collection = {
 
 const FetchDataCollection = async () => {
   try {
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      throw new Error("API URL is undefined");
+    }
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collection`);
     return res.json();
   } catch (err) {

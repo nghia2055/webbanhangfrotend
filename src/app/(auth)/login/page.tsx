@@ -44,6 +44,9 @@ function Page() {
     };
     const Login = async () => {
       try {
+        if (!process.env.NEXT_PUBLIC_API_URL) {
+          throw new Error("API URL is undefined");
+        }
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
           method: "POST", // Nếu dùng cookie
           headers: {
