@@ -34,10 +34,10 @@ function Collection() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    if (!process.env.NEXT_PUBLIC_API_URL) {
+    if (!process.env.NEXT_PUBLIC_URL) {
       throw new Error("API URL is undefined");
     }
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL}/menu`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Bắt buộc khi gửi JSON

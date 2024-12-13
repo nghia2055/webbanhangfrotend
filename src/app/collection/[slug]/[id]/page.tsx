@@ -21,11 +21,11 @@ export default async function Page({
 
   const getProducts = async () => {
     try {
-      if (!process.env.NEXT_PUBLIC_API_URL) {
+      if (!process.env.NEXT_PUBLIC_URL) {
         throw new Error("API URL is undefined");
       }
       const respone = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/productitems/${id}`
+        `${process.env.NEXT_PUBLIC_URL}/productitems/${id}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);

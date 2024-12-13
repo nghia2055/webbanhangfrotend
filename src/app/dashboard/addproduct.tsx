@@ -87,10 +87,10 @@ const ProductForm: React.FC = () => {
     for (let i = 0; i < picture.length; i++) {
       formData.append("productImages", picture[i]);
     }
-    if (!process.env.NEXT_PUBLIC_API_URL) {
+    if (!process.env.NEXT_PUBLIC_URL) {
       throw new Error("API URL is undefined");
     }
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/addProduct`, {
+    fetch(`${process.env.NEXT_PUBLIC_URL}/addProduct`, {
       method: "POST",
       body: formData,
       credentials: "include",
@@ -161,10 +161,10 @@ const ProductForm: React.FC = () => {
   useEffect(() => {
     const fetchAPIMenu = async () => {
       try {
-        if (!process.env.NEXT_PUBLIC_API_URL) {
+        if (!process.env.NEXT_PUBLIC_URL) {
           throw new Error("API URL is undefined");
         }
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu/add`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/menu/add`, {
           headers: {
             "Content-Type": "application/json",
           },

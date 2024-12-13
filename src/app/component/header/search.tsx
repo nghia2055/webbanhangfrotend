@@ -37,11 +37,11 @@ function Search() {
       setData([]);
     } else {
       try {
-        if (!process.env.NEXT_PUBLIC_API_URL) {
+        if (!process.env.NEXT_PUBLIC_URL) {
           throw new Error("API URL is undefined");
         }
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/search/${e.target.value}`
+          `${process.env.NEXT_PUBLIC_URL}/search/${e.target.value}`
         );
         const data = await res.json();
         setData(data);

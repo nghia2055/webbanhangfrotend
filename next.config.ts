@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  env: { NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL },
+  env: { NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL },
   images: {
     domains: [
       "www.blissworld.com",

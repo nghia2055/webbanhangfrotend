@@ -65,10 +65,10 @@ function Page() {
     };
     const Login = async () => {
       try {
-        if (!process.env.NEXT_PUBLIC_API_URL) {
+        if (!process.env.NEXT_PUBLIC_URL) {
           throw new Error("API URL is undefined");
         }
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

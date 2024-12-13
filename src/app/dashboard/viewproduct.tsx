@@ -23,11 +23,11 @@ export default function ViewProduct() {
   useEffect(() => {
     const res = async () => {
       try {
-        if (!process.env.NEXT_PUBLIC_API_URL) {
+        if (!process.env.NEXT_PUBLIC_URL) {
           throw new Error("API URL is undefined");
         }
         const fetchData = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/product/all`
+          `${process.env.NEXT_PUBLIC_URL}/product/all`
         );
         const Data = await fetchData.json();
 
@@ -41,11 +41,11 @@ export default function ViewProduct() {
 
   const handleRemove = async (item: string) => {
     try {
-      if (!process.env.NEXT_PUBLIC_API_URL) {
+      if (!process.env.NEXT_PUBLIC_URL) {
         throw new Error("API URL is undefined");
       }
       const fetchData = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/removeproduct/all?id=${item}`
+        `${process.env.NEXT_PUBLIC_URL}/removeproduct/all?id=${item}`
       );
       if (fetchData.ok) {
         toast("Bạn đã xóa sản phẩm thành công.", {
