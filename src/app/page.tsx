@@ -3,7 +3,13 @@ import Image from "next/image";
 import Header from "@/app/component/header/header";
 import Footer from "@/app/component/header/footer";
 
-type data = {
+export const getServerSideProps = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
+  const data = await res.json();
+  return { props: { data } };
+};
+
+type Data = {
   collection: string;
   description: string;
   options: string[];
@@ -15,24 +21,13 @@ type data = {
   _id: string;
 };
 
-export default async function Page() {
-  const getProductHome = async () => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producthome`);
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const data = await getProductHome();
-
+export default async function Page({ data }: { data: Data[] }) {
   return (
     <>
       <Header />
       <main className="max-w-[1480px] mx-auto md:pt-48 grid gap-y-6 ">
         <section className="grid grid-cols-5 gap-x-10 pb-10">
-          {data?.map((item: data, index: number) => {
+          {data?.map((item: Data, index: number) => {
             const price = String(item.price).replace(
               /\B(?=(\d{3})+(?!\d))/g,
               "."
