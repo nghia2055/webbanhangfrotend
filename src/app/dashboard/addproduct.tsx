@@ -87,10 +87,8 @@ const ProductForm: React.FC = () => {
     for (let i = 0; i < picture.length; i++) {
       formData.append("productImages", picture[i]);
     }
-    if (!process.env.NEXT_PUBLIC_URL) {
-      throw new Error("API URL is undefined");
-    }
-    fetch(`https://backendwebbanhang-sigma.vercel.app/addProduct`, {
+
+    fetch(`http://127.0.0.1:8080/addProduct`, {
       method: "POST",
       body: formData,
       credentials: "include",
@@ -161,17 +159,11 @@ const ProductForm: React.FC = () => {
   useEffect(() => {
     const fetchAPIMenu = async () => {
       try {
-        if (!process.env.NEXT_PUBLIC_URL) {
-          throw new Error("API URL is undefined");
-        }
-        const res = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/menu/add`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const res = await fetch(`http://127.0.0.1:8080/menu/add`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         const resjson = await res.json();
         setCategories(resjson.Menucollection);
       } catch (error) {

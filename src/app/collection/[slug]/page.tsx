@@ -15,12 +15,9 @@ export default async function Page({
 
   const getProducts = async () => {
     try {
-      if (!process.env.NEXT_PUBLIC_URL) {
-        throw new Error("API URL is undefined");
-      }
       const queryString = new URLSearchParams(searchParam).toString();
       const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/filter/${decodedSlug}?${queryString}`
+        `http://127.0.0.1:8080/filter/${decodedSlug}?${queryString}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);
@@ -33,11 +30,8 @@ export default async function Page({
   };
   const getSubCollection = async () => {
     try {
-      if (!process.env.NEXT_PUBLIC_URL) {
-        throw new Error("API URL is undefined");
-      }
       const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/subcollection/${decodedSlug}`
+        `http://127.0.0.1:8080/subcollection/${decodedSlug}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);

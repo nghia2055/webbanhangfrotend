@@ -44,19 +44,13 @@ function Page() {
     };
     const Login = async () => {
       try {
-        if (!process.env.NEXT_PUBLIC_URL) {
-          throw new Error("API URL is undefined");
-        }
-        const res = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/login`,
-          {
-            method: "POST", // Nếu dùng cookie
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
+        const res = await fetch(`http://127.0.0.1:8080/login`, {
+          method: "POST", // Nếu dùng cookie
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
         if (!res.ok) {
           console.log("LỖI");

@@ -34,10 +34,7 @@ function Collection() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    if (!process.env.NEXT_PUBLIC_URL) {
-      throw new Error("API URL is undefined");
-    }
-    await fetch(`https://backendwebbanhang-sigma.vercel.app/menu`, {
+    await fetch(`http://127.0.0.1:8080/menu`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Bắt buộc khi gửi JSON

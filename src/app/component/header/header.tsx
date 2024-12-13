@@ -15,12 +15,7 @@ type Collection = {
 
 const FetchDataCollection = async () => {
   try {
-    if (!process.env.NEXT_PUBLIC_URL) {
-      throw new Error("API URL is undefined");
-    }
-    const res = await fetch(
-      `https://backendwebbanhang-sigma.vercel.app/collection`
-    );
+    const res = await fetch("http://127.0.0.1:8080/collection");
     return res.json();
   } catch (err) {
     console.log(err);
@@ -58,6 +53,7 @@ const Header = async () => {
                     {/* Tên collection */}
 
                     <Link
+                      prefetch={true}
                       href={`/collection/${item.collection}`}
                       className="text-black font-bold py-5 block"
                     >

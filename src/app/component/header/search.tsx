@@ -37,11 +37,8 @@ function Search() {
       setData([]);
     } else {
       try {
-        if (!process.env.NEXT_PUBLIC_URL) {
-          throw new Error("API URL is undefined");
-        }
         const res = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/search/${e.target.value}`
+          `http://127.0.0.1:8080/search/${e.target.value}`
         );
         const data = await res.json();
         setData(data);

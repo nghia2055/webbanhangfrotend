@@ -23,12 +23,7 @@ export default function ViewProduct() {
   useEffect(() => {
     const res = async () => {
       try {
-        if (!process.env.NEXT_PUBLIC_URL) {
-          throw new Error("API URL is undefined");
-        }
-        const fetchData = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/product/all`
-        );
+        const fetchData = await fetch(`http://127.0.0.1:8080/product/all`);
         const Data = await fetchData.json();
 
         setData(Data);
@@ -41,11 +36,8 @@ export default function ViewProduct() {
 
   const handleRemove = async (item: string) => {
     try {
-      if (!process.env.NEXT_PUBLIC_URL) {
-        throw new Error("API URL is undefined");
-      }
       const fetchData = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/removeproduct/all?id=${item}`
+        `http://127.0.0.1:8080/removeproduct/all?id=${item}`
       );
       if (fetchData.ok) {
         toast("Bạn đã xóa sản phẩm thành công.", {

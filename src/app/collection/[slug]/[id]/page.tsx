@@ -21,12 +21,7 @@ export default async function Page({
 
   const getProducts = async () => {
     try {
-      if (!process.env.NEXT_PUBLIC_URL) {
-        throw new Error("API URL is undefined");
-      }
-      const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/productitems/${id}`
-      );
+      const respone = await fetch(`http://127.0.0.1:8080/productitems/${id}`);
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);
       }
