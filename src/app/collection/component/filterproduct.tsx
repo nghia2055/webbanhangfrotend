@@ -60,32 +60,36 @@ function FilterProduct({
     const selectedValue = checkbox.checked ? checkbox.value : null;
 
     // Cập nhật query params
-    const queryParams = new URLSearchParams(window.location.search);
-    if (selectedValue) {
-      queryParams.set(checkbox.name, selectedValue);
-    } else {
-      queryParams.delete(checkbox.name);
-    }
+    if (typeof window !== "undefined") {
+      const queryParams = new URLSearchParams(window.location.search);
+      if (selectedValue) {
+        queryParams.set(checkbox.name, selectedValue);
+      } else {
+        queryParams.delete(checkbox.name);
+      }
 
-    // Đẩy URL mới vào router
-    const path = `${window.location.pathname}?${queryParams.toString()}`;
-    router.push(path);
+      // Đẩy URL mới vào router
+      const path = `${window.location.pathname}?${queryParams.toString()}`;
+      router.push(path);
+    }
   };
 
   const handleSize = (size: HTMLInputElement) => {
     const selectedValue = size.checked ? size.value : null;
 
     // Cập nhật query params
-    const queryParams = new URLSearchParams(window.location.search);
-    if (selectedValue) {
-      queryParams.set(size.name, selectedValue);
-    } else {
-      queryParams.delete(size.name);
-    }
+    if (typeof window !== "undefined") {
+      const queryParams = new URLSearchParams(window.location.search);
+      if (selectedValue) {
+        queryParams.set(size.name, selectedValue);
+      } else {
+        queryParams.delete(size.name);
+      }
 
-    // Đẩy URL mới vào router
-    const path = `${window.location.pathname}?${queryParams.toString()}`;
-    router.push(path);
+      // Đẩy URL mới vào router
+      const path = `${window.location.pathname}?${queryParams.toString()}`;
+      router.push(path);
+    }
   };
 
   const handlePrice = () => {
