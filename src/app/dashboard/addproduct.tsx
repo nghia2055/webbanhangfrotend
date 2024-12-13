@@ -90,7 +90,7 @@ const ProductForm: React.FC = () => {
     if (!process.env.NEXT_PUBLIC_URL) {
       throw new Error("API URL is undefined");
     }
-    fetch(`${process.env.NEXT_PUBLIC_URL}/addProduct`, {
+    fetch(`https://backendwebbanhang-sigma.vercel.app/addProduct`, {
       method: "POST",
       body: formData,
       credentials: "include",
@@ -164,11 +164,14 @@ const ProductForm: React.FC = () => {
         if (!process.env.NEXT_PUBLIC_URL) {
           throw new Error("API URL is undefined");
         }
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/menu/add`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await fetch(
+          `https://backendwebbanhang-sigma.vercel.app/menu/add`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const resjson = await res.json();
         setCategories(resjson.Menucollection);
       } catch (error) {

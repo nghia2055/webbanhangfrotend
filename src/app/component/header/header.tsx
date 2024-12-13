@@ -18,7 +18,9 @@ const FetchDataCollection = async () => {
     if (!process.env.NEXT_PUBLIC_URL) {
       throw new Error("API URL is undefined");
     }
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/collection`);
+    const res = await fetch(
+      `https://backendwebbanhang-sigma.vercel.app/collection`
+    );
     return res.json();
   } catch (err) {
     console.log(err);

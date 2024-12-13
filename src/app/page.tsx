@@ -18,10 +18,9 @@ type data = {
 export default async function Home() {
   const getProductHome = async () => {
     try {
-      if (!process.env.NEXT_PUBLIC_URL) {
-        throw new Error("API URL is undefined");
-      }
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/producthome`);
+      const res = await fetch(
+        `https://backendwebbanhang-sigma.vercel.app/producthome`
+      );
       const data = await res.json();
       return data;
     } catch (err) {

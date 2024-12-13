@@ -27,7 +27,7 @@ export default function ViewProduct() {
           throw new Error("API URL is undefined");
         }
         const fetchData = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/product/all`
+          `https://backendwebbanhang-sigma.vercel.app/product/all`
         );
         const Data = await fetchData.json();
 
@@ -45,7 +45,7 @@ export default function ViewProduct() {
         throw new Error("API URL is undefined");
       }
       const fetchData = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/removeproduct/all?id=${item}`
+        `https://backendwebbanhang-sigma.vercel.app/removeproduct/all?id=${item}`
       );
       if (fetchData.ok) {
         toast("Bạn đã xóa sản phẩm thành công.", {

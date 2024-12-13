@@ -37,7 +37,7 @@ function Collection() {
     if (!process.env.NEXT_PUBLIC_URL) {
       throw new Error("API URL is undefined");
     }
-    await fetch(`${process.env.NEXT_PUBLIC_URL}/menu`, {
+    await fetch(`https://backendwebbanhang-sigma.vercel.app/menu`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Bắt buộc khi gửi JSON

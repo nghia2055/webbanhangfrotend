@@ -11,7 +11,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         throw new Error("API URL is undefined");
       }
       const respone = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/searchproductall/${searchParam}`
+        `https://backendwebbanhang-sigma.vercel.app/searchproductall/${searchParam}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);
