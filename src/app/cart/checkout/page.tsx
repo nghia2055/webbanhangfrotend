@@ -176,6 +176,7 @@ function Page() {
           setAddressAll("");
         })
         .catch((err) => {
+          toast("Đặt hàng không thành công");
           console.log("Error:", err);
         });
       setModal(true);
