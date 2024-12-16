@@ -18,6 +18,7 @@ type Data = {
   size: string;
   amount: number;
 };
+export const dynamic = "force-dynamic";
 
 function Page() {
   const router = useRouter();
