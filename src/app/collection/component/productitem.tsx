@@ -22,6 +22,7 @@ type data = {
 export const dynamic = "force-dynamic";
 
 function ProductItem({ productsItemsData }: { productsItemsData: data }) {
+  console.log("aaaaaaaaaaaa");
   const addProduct = useSelector(
     (state: RootState) => state.addproduct.product
   );
@@ -39,35 +40,35 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
     setSize(item);
   };
 
-  const handleMouseMove = useCallback(
-    throttle((e: React.MouseEvent) => {
-      const container = e.currentTarget;
-      const image = imageRef.current;
+  // const handleMouseMove = useCallback(
+  //   throttle((e: React.MouseEvent) => {
+  //     const container = e.currentTarget;
+  //     const image = imageRef.current;
 
-      if (!image) return;
-      const rect = container.getBoundingClientRect();
+  //     if (!image) return;
+  //     const rect = container.getBoundingClientRect();
 
-      // Tính toán vị trí con trỏ trong container (theo phần trăm)
-      const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
-      const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+  //     // Tính toán vị trí con trỏ trong container (theo phần trăm)
+  //     const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+  //     const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
 
-      // Dịch chuyển ảnh theo vị trí chuột (giới hạn trong khoảng 25% - 75%)
-      image.style.transform = `translate(-${Math.min(
-        Math.max(xPercent, 25),
-        75
-      )}%, -${Math.min(Math.max(yPercent, 25), 75)}%) scale(1.5)`;
-    }, 16), // Giới hạn tần suất gọi hàm (16ms = 60 FPS)
-    []
-  );
+  //     // Dịch chuyển ảnh theo vị trí chuột (giới hạn trong khoảng 25% - 75%)
+  //     image.style.transform = `translate(-${Math.min(
+  //       Math.max(xPercent, 25),
+  //       75
+  //     )}%, -${Math.min(Math.max(yPercent, 25), 75)}%) scale(1.5)`;
+  //   }, 16), // Giới hạn tần suất gọi hàm (16ms = 60 FPS)
+  //   []
+  // );
 
-  const handleMouseLeave = () => {
-    const image = imageRef.current;
+  // const handleMouseLeave = () => {
+  //   const image = imageRef.current;
 
-    if (image) {
-      // Reset vị trí ảnh về giữa và scale lại như cũ
-      image.style.transform = "translate(-50%, -50%) scale(1)";
-    }
-  };
+  //   if (image) {
+  //     // Reset vị trí ảnh về giữa và scale lại như cũ
+  //     image.style.transform = "translate(-50%, -50%) scale(1)";
+  //   }
+  // };
   const handleAddProduct = (id: string) => {
     if (addProduct.length > 0) {
       const check = addProduct.some((item) => id === item._id);
@@ -103,11 +104,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             )}
           </div>
         </div>
-        <div
-          className="col-span-5 overflow-hidden relative"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className="col-span-5 overflow-hidden relative">
           <Image
             src={image}
             width={1400} // Kích thước lớn hơn container
