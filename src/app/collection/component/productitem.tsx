@@ -19,6 +19,7 @@ type data = {
   productName: string;
   size: Array<"XL" | "L" | string>;
 };
+export const dynamic = "force-dynamic";
 
 function ProductItem({ productsItemsData }: { productsItemsData: data }) {
   const addProduct = useSelector(

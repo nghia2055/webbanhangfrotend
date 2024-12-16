@@ -54,7 +54,6 @@ function Page() {
         });
 
         if (!res.ok) {
-          console.log("LỖI");
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 

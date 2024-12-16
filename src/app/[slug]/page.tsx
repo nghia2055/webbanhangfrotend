@@ -6,10 +6,10 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const products = [
-    "/gioi-thieu",
-    "/dieu-khoan-su-dung",
-    "/chinh-sach-bao-mat",
-    "/chinh-sach-bao-hanh-va-doi-hang",
+    "gioi-thieu",
+    "dieu-khoan-su-dung",
+    "chinh-sach-bao-mat",
+    "chinh-sach-bao-hanh-va-doi-hang",
   ];
 
   return products.map((product: string) => ({
@@ -21,7 +21,7 @@ const blog = async ({ params }: { params: { slug: string } }) => {
   const param = await params;
   const name = param.slug;
 
-  if (name === "/gioi-thieu") {
+  if (name === "gioi-thieu") {
     return (
       <>
         <Header />
@@ -66,7 +66,7 @@ const blog = async ({ params }: { params: { slug: string } }) => {
         <Footer />
       </>
     );
-  } else if (name === "/dieu-khoan-su-dung") {
+  } else if (name === "dieu-khoan-su-dung") {
     return (
       <>
         <Header />
@@ -163,7 +163,7 @@ const blog = async ({ params }: { params: { slug: string } }) => {
         <Footer />
       </>
     );
-  } else if (name === "/chinh-sach-bao-mat") {
+  } else if (name === "chinh-sach-bao-mat") {
     return (
       <>
         <Header />
@@ -227,7 +227,7 @@ const blog = async ({ params }: { params: { slug: string } }) => {
         <Footer />
       </>
     );
-  } else if (name === "/chinh-sach-bao-hanh-doi-hang") {
+  } else if (name === "chinh-sach-bao-hanh-doi-hang") {
     return (
       <>
         <Header />
