@@ -128,3 +128,18 @@ body {
 input[type="password"]::-ms-reveal {
   display: none;
 }
+video.no-controls {
+  pointer-events: none; /* Không cho phép tương tác với video */
+}
+
+video.no-controls::-webkit-media-controls {
+  display: none !important; /* Ẩn thanh điều khiển trên trình duyệt Webkit (Chrome, Safari) */
+}
+
+video.no-controls::-moz-media-controls {
+  display: none !important; /* Ẩn thanh điều khiển trên Firefox */
+}
+
+video.no-controls::-ms-media-controls {
+  display: none !important; /* Ẩn thanh điều khiển trên IE/Edge */
+}

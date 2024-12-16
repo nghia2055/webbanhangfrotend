@@ -22,7 +22,7 @@ export default async function Page({
   const getProducts = async () => {
     try {
       const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/productitems/${id}`
+        `${process.env.NEXT_PUBLIC_URL}/productitems/${id}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);

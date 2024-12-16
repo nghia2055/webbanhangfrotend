@@ -88,12 +88,19 @@ const ProductForm: React.FC = () => {
       formData.append("productImages", picture[i]);
     }
 
-    fetch(`https://backendwebbanhang-sigma.vercel.app/addProduct`, {
+    fetch(`${process.env.NEXT_PUBLIC_URL}/addProduct`, {
       method: "POST",
       body: formData,
       credentials: "include",
     })
-      .then((respone) => respone.json())
+      .then(async (respone) => {
+        if (!respone.ok) {
+          const errorData = await respone.json();
+
+          throw new Error(errorData.message);
+        }
+        respone.json();
+      })
       .then(() => {
         toast("Đăng sản phẩm thành công", {
           action: {
@@ -105,14 +112,14 @@ const ProductForm: React.FC = () => {
         reset();
         setPicture([]);
       })
-      .catch(() =>
-        toast("Đăng sản phẩm không thành công", {
+      .catch((err) => {
+        toast(err.message, {
           action: {
             label: "✖", // Biểu tượng nút đóng
             onClick: () => toast.dismiss(), // Đóng Toast
           },
-        })
-      );
+        });
+      });
   };
 
   const handlePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -159,14 +166,11 @@ const ProductForm: React.FC = () => {
   useEffect(() => {
     const fetchAPIMenu = async () => {
       try {
-        const res = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/menu/add`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/menu/add`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         const resjson = await res.json();
         setCategories(resjson.Menucollection);
       } catch (error) {

@@ -19,7 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
 const formSchema = z.object({
@@ -44,16 +44,14 @@ function Page() {
     };
     const Login = async () => {
       try {
-        const res = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/login`,
-          {
-            method: "POST", // Nếu dùng cookie
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/login`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
         if (!res.ok) {
           console.log("LỖI");
@@ -81,7 +79,7 @@ function Page() {
           })
             .then((res) => res.json())
             .then(() => {
-              toast("Đăng sản phẩm thành công", {
+              toast("Login thành công", {
                 action: {
                   label: "✖", // Biểu tượng nút đóng
                   onClick: () => toast.dismiss(), // Đóng Toast
@@ -107,7 +105,13 @@ function Page() {
       email: "",
       password: "",
     },
+    mode: "onSubmit",
   });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    form.setValue("password", e.target.value);
+    setErrorLogin(false);
+  };
   return (
     <>
       <div className="bg-gradient-to-r from-blue-500 to-green-500 w-full h-screen bg-opacity-60">
@@ -166,6 +170,7 @@ function Page() {
                             type={showPassword ? "text" : "password"}
                             placeholder="Mật khẩu"
                             {...field}
+                            onChange={handleChange}
                           />
                         </FormControl>
                         <button

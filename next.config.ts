@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: true,
-  env: { NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL },
+
   images: {
     domains: [
       "www.blissworld.com",

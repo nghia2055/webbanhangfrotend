@@ -8,7 +8,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const getProducts = async () => {
     try {
       const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/searchproductall/${searchParam}`
+        `${process.env.NEXT_PUBLIC_URL}/searchproductall/${searchParam}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);
@@ -21,17 +21,16 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   };
 
   const productsData = await getProducts();
-  console.log("productsData", productsData);
 
   return (
     <>
       <Header />
       {productsData.length > 0 ? (
-        <div className="pt-[200] px-4">
+        <div className="pt-[200px] px-4">
           <Productitem productsData={productsData} Subcollection={[]} />
         </div>
       ) : (
-        <div className="pt-[200] text-center ">Không có sản phẩm nào</div>
+        <div className="pt-[200px] text-center ">Không có sản phẩm nào</div>
       )}
     </>
   );

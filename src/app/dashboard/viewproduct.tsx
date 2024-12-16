@@ -24,7 +24,7 @@ export default function ViewProduct() {
     const res = async () => {
       try {
         const fetchData = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/product/all`
+          `${process.env.NEXT_PUBLIC_URL}/product/all`
         );
         const Data = await fetchData.json();
 
@@ -39,7 +39,7 @@ export default function ViewProduct() {
   const handleRemove = async (item: string) => {
     try {
       const fetchData = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/removeproduct/all?id=${item}`
+        `${process.env.NEXT_PUBLIC_URL}/removeproduct/all?id=${item}`
       );
       if (fetchData.ok) {
         toast("Bạn đã xóa sản phẩm thành công.", {

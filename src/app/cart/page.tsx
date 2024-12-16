@@ -38,7 +38,7 @@ function Page() {
 
   return (
     <>
-      <div className={`px-4 flex pt-[200] mb-10`}>
+      <div className={`px-4 flex pt-[200px] mb-10`}>
         <div className={` w-4/5`}>
           <div className="font-bold text-lg">Giỏ Hàng Của Bạn</div>
           <br />

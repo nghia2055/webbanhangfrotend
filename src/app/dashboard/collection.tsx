@@ -34,7 +34,8 @@ function Collection() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    await fetch(`https://backendwebbanhang-sigma.vercel.app/menu`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL}/menu`, {
+      credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Bắt buộc khi gửi JSON

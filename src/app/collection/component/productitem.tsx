@@ -79,7 +79,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
 
   return (
     <>
-      <div className="grid grid-cols-11 pt-[200] px-7">
+      <div className="grid grid-cols-11 pt-[200px] px-7">
         <div className="col-span-1">
           <div className="flex flex-col space-y-3">
             {productsItemsData.productImages.map(

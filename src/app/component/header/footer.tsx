@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
 import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
+import FooterSlice from "../footerslice";
 
 function Footer() {
   return (
@@ -9,65 +10,60 @@ function Footer() {
       <div className="pt-14 bg-nav  ">
         <div className="grid grid-cols-2 gap-x-10 pb-20 border-b-2 px-4">
           <div>
-            <span>ĐĂNG KÍ NHẬN THÔNG TIN</span>
+            <span className="mb-2 block font-bold text-xl">
+              ĐĂNG KÍ NHẬN THÔNG TIN
+            </span>
             <p>
               Đăng ký ngay để được cập nhật sớm nhất những thông tin hữu ích, ữu
               đãi vô cùng hấp dẫn và những món quà bất ngờ từ Nghĩa!
             </p>
           </div>
-          <div>
-            <div className="flex h-10 mb-4">
-              <input
-                placeholder="Nhập email của bạn"
-                className="w-2/3 outline-none h-full pl-1 text-black"
-              />
-              <Button variant="destructive" className="rounded-none h-full">
-                ĐĂNG KÝ
-              </Button>
-            </div>
-            <div>
-              <input type="checkbox" />
-              <span>
-                Tôi đã đọc và đồng ý với{" "}
-                <span className="cursor-pointer">Chính sách bảo mật</span>
-              </span>
-            </div>
-          </div>
+          <FooterSlice />
         </div>
         <div className="grid grid-cols-7 px-4 gap-x-8 pb-32 border-b-2 mt-10">
           <div className="col-span-3">
             <p className="mb-3">Nghĩa - Giày Chính Hãng</p>
             <div className="flex space-x-2">
-              <span>icon</span>
+              <video
+                width="100"
+                height="100"
+                autoPlay
+                muted
+                loop
+                className="no-controls"
+              >
+                <source src="/NghiaSHOP.mp4" type="video/mp4" />
+                <track
+                  src="/path/to/captions.vtt"
+                  kind="subtitles"
+                  srcLang="en"
+                  label="English"
+                />
+                Your browser does not support the video tag.
+              </video>
+
               <span>
                 NghĩaShop được định hướng trở thành hệ thống thương mại điện tử
                 bán giày chính hãng hàng đầu Việt Nam. <br />
-                <span>Showroom: 249 Xã Đàn, Hà Nội</span> <br />
+                <span>Showroom: Sao Hỏa</span> <br />
                 Hotline: 0707686606
               </span>
             </div>
           </div>
           <div className="col-span-1 flex flex-col space-y-2">
             <p className="mb-3">VỀ CHÚNG TÔI</p>
-            <Link href="/" className="inline-block !mt-0">
+            <Link href="gioi-thieu" className="inline-block !mt-0">
               Giới thiệu
             </Link>
-            <Link href="/">Điều khoản sử dụng</Link>
-            <Link href="/">Chính sách bảo mật</Link>
-            <Link href="/">Tin tức</Link>
-            <Link href="/">Cơ hội việc làm</Link>
-            <Link href="/">Liên hệ</Link>
+            <Link href="dieu-khoan-su-dung">Điều khoản sử dụng</Link>
+            <Link href="chinh-sach-bao-mat">Chính sách bảo mật</Link>
           </div>
           <div className="col-span-1 flex flex-col space-y-2">
             <p className="mb-3">KHÁCH HÀNG</p>
-            <Link href="/" className="inline-block !mt-0">
-              Hướng dẫn mua hàng
+
+            <Link href="/chinh-sach-bao-hanh-doi-hang">
+              Chính sách bảo hành và đổi hàng
             </Link>
-            <Link href="/">Chính sách đổi trả</Link>
-            <Link href="/">Chính sách bảo hành</Link>
-            <Link href="/">Khách hàng thân thiết</Link>
-            <Link href="/">Hướng dẫn chọn size</Link>
-            <Link href="/">Chương trình khuyến mại</Link>
           </div>
           <div className="col-span-2">
             <p>CHỨNG NHẬN</p>
@@ -82,9 +78,15 @@ function Footer() {
           <div>
             <p>Kết nối với Myshoes.vn</p>
             <div className="flex justify-between">
-              <FaFacebookSquare className="bg-blue-900 w-8 h-8" />
-              <FaYoutube className="bg-red-600 w-8 h-8" />
-              <FaInstagramSquare className="bg-red-500 w-8 h-8" />
+              <Link href="https://www.facebook.com/">
+                <FaFacebookSquare className=" w-8 h-8" />
+              </Link>
+              <Link href="https://www.youtube.com/">
+                <FaYoutube className=" w-8 h-8" />
+              </Link>
+              <Link href="https://www.instagram.com/">
+                <FaInstagramSquare className=" w-8 h-8" />
+              </Link>
             </div>
           </div>
           <div>Visa MasterCart</div>

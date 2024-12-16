@@ -38,7 +38,7 @@ function Search() {
     } else {
       try {
         const res = await fetch(
-          `https://backendwebbanhang-sigma.vercel.app/search/${e.target.value}`
+          `${process.env.NEXT_PUBLIC_URL}/search/${e.target.value}`
         );
         const data = await res.json();
         setData(data);

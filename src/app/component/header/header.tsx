@@ -15,9 +15,7 @@ type Collection = {
 
 const FetchDataCollection = async () => {
   try {
-    const res = await fetch(
-      "https://backendwebbanhang-sigma.vercel.app/collection"
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/collection`);
     return res.json();
   } catch (err) {
     console.log(err);
@@ -33,7 +31,7 @@ const Header = async () => {
           <div className="flex px-10">
             <div className="w-1/3"></div>
             <h1 className="text-5xl font-bold text-black text-center py-5 w-1/3 ">
-              <Link href="/"> Nghĩa</Link>
+              <Link href="/"> Nghĩa Shop </Link>
             </h1>
             <div className="flex items-center w-1/3 justify-end gap-x-5">
               <Cart />
@@ -117,10 +115,6 @@ const Header = async () => {
               })}
             </ul>
           </nav>
-
-          <h2 className="mt-4 ml-auto border-2 xl:block hidden border-black cursor-pointer absolute bottom-5 right-10">
-            FIND YOUR ROUTINE QUIZ
-          </h2>
         </header>
       </section>
     </>

@@ -49,6 +49,7 @@ function Page() {
       .then((res) => res.json())
       .then(() => {
         route.push("/");
+        dispatch(collection("trangchu"));
       })
       .catch((err) => {
         console.log(err);

@@ -18,9 +18,7 @@ type data = {
 export default async function Home() {
   const getProductHome = async () => {
     try {
-      const res = await fetch(
-        "https://backendwebbanhang-sigma.vercel.app/producthome"
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/producthome`);
       const data = await res.json();
       return data;
     } catch (err) {
@@ -56,6 +54,7 @@ export default async function Home() {
                       }
                     >
                       <Image
+                        priority
                         src={src}
                         width={500}
                         height={400}

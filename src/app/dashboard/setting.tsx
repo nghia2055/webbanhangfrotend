@@ -43,9 +43,7 @@ function Setting() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form data:", data);
-  };
+  const onSubmit = (data: FormData) => {};
 
   return (
     <div className="min-h-screen bg-gray-100 px-4">

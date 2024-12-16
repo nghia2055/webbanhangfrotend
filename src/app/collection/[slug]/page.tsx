@@ -17,7 +17,7 @@ export default async function Page({
     try {
       const queryString = new URLSearchParams(searchParam).toString();
       const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/filter/${decodedSlug}?${queryString}`
+        `${process.env.NEXT_PUBLIC_URL}/filter/${decodedSlug}?${queryString}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);
@@ -31,7 +31,7 @@ export default async function Page({
   const getSubCollection = async () => {
     try {
       const respone = await fetch(
-        `https://backendwebbanhang-sigma.vercel.app/subcollection/${decodedSlug}`
+        `${process.env.NEXT_PUBLIC_URL}/subcollection/${decodedSlug}`
       );
       if (!respone.ok) {
         throw new Error(`http error~ Status: ${respone.status}`);
