@@ -1,13 +1,6 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  reactStrictMode: true,
+const nextConfig = {
   images: {
     domains: [
       "www.blissworld.com",

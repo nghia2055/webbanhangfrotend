@@ -81,7 +81,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             height={1000}
             alt="Zoomable Image"
             ref={imageRef}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-zoom-in transition-transform duration-200 ease-out"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-200 ease-out"
           />
         </div>
         <div className="col-span-5 px-7 space-y-4">
