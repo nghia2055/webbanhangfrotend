@@ -7,6 +7,7 @@ import { add, amount } from "../../redux/slice/sliceaddproduct";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { throttle } from "lodash";
+import { useRouter } from "next/navigation";
 
 type data = {
   collection: string;
@@ -24,7 +25,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
     (state: RootState) => state.addproduct.product
   );
   const imageRef = useRef<HTMLImageElement | null>(null);
-
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const [image, setImage] = useState(productsItemsData.productImages[0]);
   const [size, setSize] = useState(productsItemsData.size[0]);
@@ -166,7 +167,15 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             >
               THÊM VÀO GIỎ
             </Button>
-            <Button className="w-1/2 h-12 rounded-none">MUA HÀNG NGAY</Button>
+            <Button
+              className="w-1/2 h-12 rounded-none"
+              onClick={() => {
+                handleAddProduct(productsItemsData._id);
+                router.push("/cart/checkout");
+              }}
+            >
+              MUA HÀNG NGAY
+            </Button>
           </div>
         </div>
       </div>

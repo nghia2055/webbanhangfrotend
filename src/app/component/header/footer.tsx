@@ -52,11 +52,11 @@ function Footer() {
           </div>
           <div className="col-span-1 flex flex-col space-y-2">
             <p className="mb-3">VỀ CHÚNG TÔI</p>
-            <Link href="gioi-thieu" className="inline-block !mt-0">
+            <Link href="/gioi-thieu" className="inline-block !mt-0">
               Giới thiệu
             </Link>
-            <Link href="dieu-khoan-su-dung">Điều khoản sử dụng</Link>
-            <Link href="chinh-sach-bao-mat">Chính sách bảo mật</Link>
+            <Link href="/dieu-khoan-su-dung">Điều khoản sử dụng</Link>
+            <Link href="/chinh-sach-bao-mat">Chính sách bảo mật</Link>
           </div>
           <div className="col-span-1 flex flex-col space-y-2">
             <p className="mb-3">KHÁCH HÀNG</p>

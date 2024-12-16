@@ -15,7 +15,9 @@ type Collection = {
 
 const FetchDataCollection = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/collection`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/collection`, {
+      next: { revalidate: 10 }, // Cache dữ liệu trong 10 giây
+    });
     return res.json();
   } catch (err) {
     console.log(err);
@@ -31,7 +33,9 @@ const Header = async () => {
           <div className="flex px-10">
             <div className="w-1/3"></div>
             <h1 className="text-5xl font-bold text-black text-center py-5 w-1/3 ">
-              <Link href="/"> Nghĩa Shop </Link>
+              <Link href="/" prefetch={true}>
+                Nghĩa Shop
+              </Link>
             </h1>
             <div className="flex items-center w-1/3 justify-end gap-x-5">
               <Cart />
