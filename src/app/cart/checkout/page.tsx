@@ -93,8 +93,6 @@ function Page() {
   const [Address, setAddress] = useState("");
   const [AddressAll, setAddressAll] = useState("");
 
-  const [err, setErr] = useState(true);
-
   const dispatch = useDispatch<AppDispatch>();
   const handleNumber = (e: ChangeEvent<HTMLInputElement>) => {
     setNumberPhone(e.target.value);

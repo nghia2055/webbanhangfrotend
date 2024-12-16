@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import Header from "../component/header/header";
 import Footer from "../component/header/footer";
 
