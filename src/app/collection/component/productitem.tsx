@@ -106,6 +106,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
         </div>
         <div className="col-span-5 overflow-hidden relative">
           <Image
+            priority
             src={image}
             width={1400} // Kích thước lớn hơn container
             height={1000}
