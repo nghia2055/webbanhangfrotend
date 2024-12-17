@@ -157,22 +157,15 @@ function Page() {
       })
         .then((response) => {
           if (response.status === 200) {
-            return response.json();
+            toast("Đặt hàng thành công!");
+            setNumberPhone("");
+            setAddress("");
+            setAddressAll("");
           } else {
             throw new Error("Something went wrong!");
           }
         })
-        .then((result) => {
-          // Kiểm tra xem result có phải là đối tượng hay không
-          if (result && result.message) {
-            toast(result.message); // Hiển thị thông điệp từ result.message
-          } else {
-            toast("Đặt hàng thành công!"); // Mặc định nếu không có message
-          }
-          setNumberPhone("");
-          setAddress("");
-          setAddressAll("");
-        })
+        .then((result) => {})
         .catch((err) => {
           toast("Đặt hàng không thành công");
           console.log("Error:", err);
