@@ -57,7 +57,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             {productsItemsData.productImages.map(
               (item: string, index: number) => {
                 return (
-                  <Image
+                  <img
                     onClick={() => {
                       handlePicture(item);
                     }}
@@ -74,8 +74,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
           </div>
         </div>
         <div className="col-span-5 overflow-hidden relative">
-          <Image
-            priority
+          <img
             src={image}
             width={1400} // Kích thước lớn hơn container
             height={1000}
