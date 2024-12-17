@@ -202,8 +202,8 @@ function Page() {
     setAddressAll(e.target.value);
   };
   return (
-    <div className="pt-[200px] flex gap-x-10 mb-20 px-4 ">
-      <div className="w-1/3  ">
+    <div className="md:pt-[200px] flex md:gap-x-10 md:mb-20 md:px-4 flex-col mb-20 md:flex-row ">
+      <div className="md:w-1/3 w-full mt-32 md:mt-0">
         <div className="flex flex-col justify-center text-center space-y-6 border-2 h-60  ">
           <span className="font-bold">Nhập thông tin khách hàng</span>
           <div>
@@ -224,7 +224,7 @@ function Page() {
           )}
         </div>
 
-        <div className="mt-8 flex flex-col border-2 p-3 space-y-3">
+        <div className="mt-8 flex flex-col border-2 p-3 space-y-3 mb-12">
           <span>ĐỊA CHỈ GIAO HÀNG</span>
           <input
             value={AddressAll}
@@ -316,81 +316,81 @@ function Page() {
         </div>
         <div className="p-8 border-2">
           <>
-            <div className={`px-4 flex mb-10`}>
-              <div className={` w-full`}>
+            <div className="px-4 flex mb-10  justify-center">
+              <div className="overflow-x-auto">
                 <div className="font-bold text-lg">Giỏ Hàng Của Bạn</div>
                 <br />
-                <div className="grid grid-cols-15 flex-grow text-center border-2">
-                  <div className="col-span-2">
-                    <span>Hình ảnh</span>
-                    {/* <p>ảnh</p> */}
+                <div className="overflow-x-auto w-full">
+                  {/* Header */}
+                  <div className="flex text-center border-b-2 font-semibold bg-gray-100">
+                    <div className="w-40 shrink-0 py-3 bg-gray-200">
+                      Hình ảnh
+                    </div>
+                    <div className="w-64 shrink-0 py-3 bg-gray-200">
+                      Tên sản phẩm
+                    </div>
+                    <div className="w-32 shrink-0 py-3 bg-gray-200">
+                      Mã hàng
+                    </div>
+                    <div className="w-32 shrink-0 py-3 bg-gray-200">
+                      Số lượng
+                    </div>
+                    <div className="w-32 shrink-0 py-3 bg-gray-200">
+                      Đơn giá
+                    </div>
                   </div>
-                  <div className="col-span-4">
-                    <span>Tên sản phẩm</span>
-                    {/* <div>
-                         <p>Giày</p>
-                         <span>Chọn size: </span>
-                         <span>Điểm thưởng: </span>
-                       </div> */}
-                  </div>
-                  <div className="col-span-2">
-                    <span>Mã hàng</span>
-                  </div>
-                  <div className="col-span-3">
-                    <span>Số lượng</span>
-                  </div>
-                  <div className="col-span-2">
-                    <span>Đơn giá</span>
-                  </div>
-                  <div className="col-span-2">
-                    <span>Tổng cộng</span>
-                  </div>
-                </div>
-                {data.map((item: Data, index: number) => {
-                  return (
-                    <div
-                      className="grid grid-cols-15 flex-grow text-center border-b-2 border-l-2 border-r-2 place-items-center "
-                      key={`index-${index}`}
-                    >
-                      <div className="col-span-2 flex justify-center py-2">
-                        <Image
-                          src={item.productImages[0]}
-                          width={70}
-                          height={70}
-                          alt=""
-                        />
-                      </div>
-                      <div className="col-span-4">
-                        <div>
-                          <p>{item.productName}</p>
-                          <span>Chọn size: {item.size} </span>
+
+                  {/* Data Rows */}
+                  <div className="flex flex-col">
+                    {data.map((item: Data, index: number) => (
+                      <div
+                        key={index}
+                        className="flex items-center text-center border-b-2"
+                      >
+                        {/* Hình ảnh */}
+                        <div className="w-40 shrink-0 py-3 flex justify-center">
+                          <Image
+                            src={item.productImages[0]}
+                            width={70}
+                            height={70}
+                            alt="product-image"
+                          />
                         </div>
-                      </div>
-                      <div className="col-span-2 space-y-3">
-                        <div>MSN{item._id.slice(19)}</div>
-                        <div
-                          className="text-red-500 text-xs cursor-pointer font-bold"
-                          onClick={() => {
-                            handleRemove(item._id);
-                          }}
-                        >
-                          Xóa
+
+                        {/* Tên sản phẩm */}
+                        <div className="w-64 shrink-0 py-3 text-left">
+                          <p className="font-semibold">{item.productName}</p>
+                          <span className="text-sm text-gray-500">
+                            Chọn size: {item.size}
+                          </span>
                         </div>
-                      </div>
-                      <div className="col-span-3">
-                        <span>{item.amount}</span>
-                      </div>
-                      <div className="col-span-2">
-                        <span>
+
+                        {/* Mã hàng */}
+                        <div className="w-32 shrink-0 py-3">
+                          <p>MSN{item._id.slice(19)}</p>
+                          <button
+                            className="text-red-500 text-sm font-bold"
+                            onClick={() => handleRemove(item._id)}
+                          >
+                            Xóa
+                          </button>
+                        </div>
+
+                        {/* Số lượng */}
+                        <div className="w-32 shrink-0 py-3">{item.amount}</div>
+
+                        {/* Đơn giá */}
+                        <div className="w-32 shrink-0 py-3 font-semibold">
                           {String(item.price).replace(
                             /\B(?=(\d{3})+(?!\d))/g,
                             ","
-                          )}
-                        </span>
+                          )}{" "}
+                          đ
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </>

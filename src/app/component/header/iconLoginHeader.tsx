@@ -17,7 +17,7 @@ async function IconHeader() {
     <>
       <Link
         href={login ? "/dashboard" : "/login"}
-        className="w-[40px] h-[35px] flex items-center relative"
+        className="w-[40px] h-[35px] items-center relative md:flex hidden"
       >
         {login ? (
           <FaUsersCog className="text-4xl" />

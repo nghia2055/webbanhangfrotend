@@ -2,6 +2,7 @@ import IconHeader from "./iconLoginHeader";
 import Search from "./search";
 import Link from "next/link";
 import Cart from "./cart";
+import Menu from "./menu";
 type SubCollection = {
   name: string;
   options: string[];
@@ -30,9 +31,9 @@ const Header = async () => {
     <>
       <section className="fixed z-[80] w-full">
         <header className="bg-nav relative">
-          <div className="flex px-10">
+          <div className="flex md:px-10 px-2">
             <div className="w-1/3"></div>
-            <h1 className="text-5xl font-bold text-black text-center py-5 w-1/3 ">
+            <h1 className="md:text-3xl text-xl font-bold md:text-black text-red-500 text-center my-4 md:py-5 w-1/3 ">
               <Link href="/" prefetch={true}>
                 Nghĩa Shop
               </Link>
@@ -41,17 +42,12 @@ const Header = async () => {
               <Cart />
               <Search />
               <IconHeader />
+              <Menu />
             </div>
           </div>
-          <nav className="bg-nav px-3">
-            <ul className="flex gap-6 flex-grow justify-center flex-wrap">
+          <nav className="bg-nav px-3 ">
+            <ul className="flex md:gap-6 gap-2 md:flex-grow flex-wrap md:justify-center justify-around ">
               {data.map((item: Collection, index: number) => {
-                // const divWidthClass =
-                //   item.collection === "Giày Adidas" ||
-                //   item.collection === "Giày Puma"
-                //     ? "w-96"
-                //     : "w-200";
-
                 return (
                   <div key={index} className="relative group">
                     {/* Tên collection */}
@@ -59,7 +55,7 @@ const Header = async () => {
                     <Link
                       prefetch={true}
                       href={`/collection/${item.collection}`}
-                      className="text-black font-bold py-5 block"
+                      className="text-black font-bold md:py-5 block"
                     >
                       {item.collection}
                       <div

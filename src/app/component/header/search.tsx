@@ -83,7 +83,7 @@ function Search() {
   return (
     <span ref={ref} onClick={handleFocusInput}>
       <CiSearch
-        className="w-[40px] h-[35px] cursor-pointer"
+        className="w-[40px] h-[35px] cursor-pointer md:flex hidden"
         onClick={handleSearch}
       />
       {search ? (
@@ -91,9 +91,9 @@ function Search() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className=" md:px-14 md:py-4 absolute top-full left-0  min-h-[440px] bg-white w-full"
+          className=" md:px-14 md:py-4 absolute top-full left-0 min-h-[440px] bg-white w-full"
         >
-          <div className="z-[20000] overflow-auto h-96">
+          <div className="overflow-auto h-96">
             <div className="relative ">
               <input
                 ref={inputRef}

@@ -78,7 +78,11 @@ function Page() {
                   <ul>
                     <li>
                       <span
-                        className="block py-2 rounded-md hover:bg-blue-700 cursor-pointer"
+                        className={
+                          nghia === item.url
+                            ? `bg-red-300 py-2 w-full block rounded-md`
+                            : "block py-2 rounded-md hover:bg-blue-700 cursor-pointer"
+                        }
                         onClick={() => {
                           if (item.url === "dangxuat") {
                             handleLogout();

@@ -133,7 +133,7 @@ function FilterProduct({
   }, []);
 
   return (
-    <section className="col-span-1 space-y-6">
+    <section className="col-span-1 space-y-6 hidden md:block">
       <p className="flex justify-between">
         Tìm Kiếm Theo
         <span className="cursor-pointer rounded-full w-10 bg-nav text-center ">

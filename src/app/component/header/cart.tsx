@@ -54,7 +54,7 @@ function Cart() {
       interactive
       render={(attrs) => (
         <div
-          className="box border-2 rounded-xl shadow-2xl"
+          className="box border-2 rounded-xl shadow-2xl "
           tabIndex={-1}
           {...attrs}
         >
@@ -174,8 +174,8 @@ function Cart() {
           setOpenTippy(!openTippy);
         }}
       >
-        <FaBagShopping className="w-[60px] h-[60px] cursor-pointer px-4 " />
-        <span className="absolute top-0 right-0 bg-red-500  rounded-full w-6 h-6 text-center flex items-center justify-center text-white select-none">
+        <FaBagShopping className="w-[60px] h-[60px] cursor-pointer px-4 md:flex hidden " />
+        <span className="absolute top-0 right-0 bg-red-500  rounded-full w-6 h-6 text-center md:flex items-center justify-center text-white select-none hidden">
           {amount}
         </span>
       </div>

@@ -23,8 +23,8 @@ import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6).max(100),
+  email: z.string().email("Hãy nhập email"),
+  password: z.string().min(6, "Hãy nhập mật khẩu").max(100),
 });
 
 function Page() {
@@ -113,8 +113,8 @@ function Page() {
   };
   return (
     <>
-      <div className="bg-gradient-to-r from-blue-500 to-green-500 w-full h-screen bg-opacity-60">
-        <div className="text-end text-3xl font-bold text-red-600 p-10 ">
+      <div className="bg-gradient-to-r from-blue-500 to-green-500 w-full h-screen bg-opacity-60 relative">
+        <div className="text-end text-3xl font-bold text-red-600 p-10 absolute z-50 top-0 right-0 sm:top-10 sm:right-6 md:right-16 lg:right-[100px]">
           <Button
             variant="secondary"
             className="bg-green-700 opacity-80"
@@ -123,7 +123,7 @@ function Page() {
             X
           </Button>
         </div>
-        <div className="container sm:mx-auto absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex justify-center mx-auto w-full sm:h-[500] rounded-3xl overflow-hidden sm:w-[1000] ">
+        <div className="container sm:mx-auto absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex justify-center mx-auto w-full sm:h-[600px] rounded-3xl overflow-hidden sm:w-[1000] ">
           <div className="w-1/2 bg-white flex justify-center items-center flex-col gap-5 bg-opacity-10">
             <span className="text-white text-center font-thin text-sm">
               Nếu chưa có tài khoản hãy nhấn vào đăng kí!

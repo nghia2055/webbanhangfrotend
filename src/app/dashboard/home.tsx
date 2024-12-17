@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
           <nav>
             <ul className="flex space-x-6">
               <li>
-                <a href="#home" className="hover:text-blue-300">
+                <a href="/" className="hover:text-blue-300">
                   Trang Chủ
                 </a>
               </li>

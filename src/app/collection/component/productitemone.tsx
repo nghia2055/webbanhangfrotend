@@ -24,8 +24,8 @@ function ProductItems({
   Subcollection: sub[];
 }) {
   return (
-    <section className="col-span-4">
-      <div className=" grid grid-cols-4 ">
+    <section className="md:col-span-4 col-span-5">
+      <div className=" grid md:grid-cols-3 grid-cols-2 space-x-2 md:space-x-0 lg:grid-cols-4">
         {productsData.map((item: data, index: number) => {
           const price = String(item.price).replace(
             /\B(?=(\d{3})+(?!\d))/g,
@@ -55,7 +55,7 @@ function ProductItems({
                 </Link>
               </div>
               <div className="mt-2 text-center space-y-3">
-                <h2 className="text-sm opacity-80 leading-none">
+                <h2 className="line-clamp-2 md:h-20 overflow-hidden text-ellipsis px-2 h-20 flex items-center sm:h-20">
                   {item.productName}
                 </h2>
                 <div className="text-md text-red-700 font-bold">

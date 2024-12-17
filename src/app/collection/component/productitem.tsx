@@ -2,11 +2,12 @@
 import Footer from "@/app/component/header/footer";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { add, amount } from "../../redux/slice/sliceaddproduct";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { useRouter } from "next/navigation";
+import throttle from "lodash/throttle";
 
 type data = {
   collection: string;
@@ -49,11 +50,38 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
     dispatch(add({ ...productsItemsData, size: size, amount: 1 }));
   };
 
+  const handleMouseMove = useCallback(
+    throttle((e: React.MouseEvent) => {
+      const image = imageRef.current;
+      if (!image) return;
+      const container = e.currentTarget;
+      const rect = container.getBoundingClientRect();
+      // Tính toán vị trí con trỏ trong container (theo phần trăm)
+      const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+
+      // Dịch chuyển ảnh theo vị trí chuột (giới hạn trong khoảng 25% - 75%)
+      image.style.transform = `translate(-${Math.min(
+        Math.max(xPercent, 25),
+        75
+      )}%, -${Math.min(Math.max(yPercent, 25), 75)}%) scale(1.5)`;
+    }, 16), // Giới hạn tần suất gọi hàm (16ms = 60 FPS)
+    []
+  );
+  const handleMouseLeave = () => {
+    const image = imageRef.current;
+
+    if (image) {
+      // Reset vị trí ảnh về giữa và scale lại như cũ
+      image.style.transform = "translate(-50%, -50%) scale(1)";
+    }
+  };
+
   return (
     <>
-      <div className="grid grid-cols-11 pt-[200px] px-7">
+      <div className="lg:grid lg:grid-cols-11 lg:pt-[200px] md:pt-[250px] px-7 md:flex md:flex-col md:justify-around sm:pt-[150px] pt-[150px] ">
         <div className="col-span-1">
-          <div className="flex flex-col space-y-3">
+          <div className="flex lg:flex-col lg:space-y-3 md:pb-20 lg:pb-0 sm:pb-20 justify-between pb-20 flex-wrap">
             {productsItemsData.productImages.map(
               (item: string, index: number) => {
                 return (
@@ -73,14 +101,18 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             )}
           </div>
         </div>
-        <div className="col-span-5 overflow-hidden relative">
+        <div
+          className="lg:col-span-5 lg:overflow-hidden lg:relative "
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <img
             src={image}
             width={1400} // Kích thước lớn hơn container
             height={1000}
             alt="Zoomable Image"
             ref={imageRef}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-200 ease-out"
+            className="lg:absolute lg:top-1/2 lg:left-1/2  lg:transform lg:-translate-x-1/2 lg:cursor-zoom-in lg:-translate-y-1/2 lg:transition-transform lg:duration-200 lg:ease-out "
           />
         </div>
         <div className="col-span-5 px-7 space-y-4">
@@ -94,12 +126,18 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
               <sup>₫</sup>
             </span>
             <span className="">
-              <span>icon</span>
               <span> Kho hàng: Còn hàng </span>
               <p>Điểm thưởng: 18900</p>
               <p>Mã sản phẩm: MSP302</p>
             </span>
-            <span className="flex-grow text-end">anh</span>
+            <span className=" text-end">
+              <Image
+                src={productsItemsData.productImages[0]}
+                width={50}
+                height={50}
+                alt="anh"
+              />
+            </span>
           </div>
           <div>
             <p className="mb-2">Chọn Size</p>

@@ -1,37 +1,46 @@
-import Link from "next/link";
+"use client";
 import Image from "next/image";
-import Header from "@/app/component/header/header";
-import Footer from "@/app/component/header/footer";
+import Link from "next/link";
+import { ChangeEvent, useState } from "react";
 
 type data = {
   collection: string;
+  _id: string;
+  createdAt: string;
   description: string;
-  options: string[];
   price: number;
   productImages: string[];
   productName: string;
-  size: string[];
+  size: Array<string>;
   subCollection: string;
-  _id: string;
 };
 
-export default async function Home() {
-  const getProductHome = async () => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/producthome`);
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      console.log(err);
+function SearchMenu() {
+  const [data, setData] = useState<data[]>([]);
+
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.trim()) {
+      setData([]);
+    } else {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/searchMenu/${e.target.value}`
+        );
+        const data = await res.json();
+        setData(data);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
-
-  const data = await getProductHome();
-
   return (
     <>
-      <Header />
-      <main className="max-w-[1480px] mx-auto md:pt-32 grid gap-y-6 pt-32 p-4 lg:pt-40 sm:pt-28 ">
+      <input
+        onChange={handleChange}
+        className=" border-2 rounded-md w-full bg-slate-300 text-black pl-2 h-12 text-xs "
+        placeholder="Hãy nhập sản phẩm bạn muốn tìm?"
+      />
+      <main className="max-w-[1480px] mx-auto md:pt-6 grid gap-y-6 pt-16 p-4 lg:pt-16 sm:pt-16 ">
         <section className="grid md:grid-cols-4 md:gap-x-10 md:pb-10 grid-cols-2 md:pt-16 lg:pt-8 lg:grid-cols-5">
           {Array.isArray(data) &&
             data?.map((item: data, index: number) => {
@@ -46,13 +55,7 @@ export default async function Home() {
                   key={index}
                 >
                   <div className="flex flex-col items-center ">
-                    <Link
-                      href={
-                        item.collection && item._id
-                          ? `/collection/${item.collection}/${item._id}`
-                          : "/"
-                      }
-                    >
+                    <Link href={`/collection/${item.collection}/${item._id}`}>
                       <Image
                         priority
                         src={src}
@@ -86,7 +89,8 @@ export default async function Home() {
             })}
         </section>
       </main>
-      <Footer />
     </>
   );
 }
+
+export default SearchMenu;

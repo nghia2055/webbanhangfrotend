@@ -26,11 +26,7 @@ export const store = configureStore({
   reducer: persistedReducer, // Dùng persistedReducer cho toàn bộ state
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [
-          "persist/REHYDRATE", // Bỏ qua kiểm tra serializable cho các action của redux-persist
-        ],
-      },
+      serializableCheck: false, // Tắt kiểm tra giá trị không tuần tự hóa
     }),
 });
 
