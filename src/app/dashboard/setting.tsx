@@ -51,12 +51,12 @@ function Setting() {
         <h1 className="text-2xl font-bold mb-6">Thông Tin Người Dùng</h1>
 
         {/* Display User Info */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
+        <div className="md:space-y-6 space-y-2">
+          <div className="flex items-center md:justify-between">
             <span className="text-gray-600 font-medium">Tên:</span>
             <span>{data?.user || "Chưa có tên"}</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex md:items-center md:justify-between flex-col items-start">
             <span className="text-gray-600 font-medium">Email:</span>
             <span>{data?.email || "Chưa có email"}</span>
           </div>

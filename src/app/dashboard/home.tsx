@@ -7,12 +7,12 @@ const HomePage: React.FC = () => {
     <div className="font-sans bg-gray-50">
       {/* Header */}
       <header className="bg-blue-800 text-white py-6 px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between overflow-hidden md:overflow-auto">
           <h1 className="text-3xl font-bold">MyShop</h1>
-          <nav>
+          <nav className="hidden md:block">
             <ul className="flex space-x-6">
               <li>
-                <a href="/" className="hover:text-blue-300">
+                <a href="/" className="hover:text-blue-300 hidden">
                   Trang Chủ
                 </a>
               </li>
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
 
       {/* Banner */}
       <section
-        className="relative bg-cover bg-center h-[500px]"
+        className="relative bg-cover bg-center h-[530px] md:h-[500px]"
         style={{
           backgroundImage: "url('https://via.placeholder.com/1500x500')",
         }}
@@ -46,8 +46,10 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="absolute inset-0 flex items-center justify-center text-center text-white">
           <div>
-            <h2 className="text-5xl font-semibold">Chào Mừng Đến Với MyShop</h2>
-            <p className="text-lg mt-4">
+            <h2 className="md:text-5xl text-sm font-semibold">
+              Chào Mừng Đến Với MyShop
+            </h2>
+            <p className="md:text-lg text-xs mt-4">
               Mua sắm những sản phẩm chất lượng, giá cả hợp lý!
             </p>
             <a
@@ -61,7 +63,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 bg-gray-100 text-center">
+      <section
+        id="features"
+        className="py-16 bg-gray-100 text-center hidden md:block"
+      >
         <h3 className="text-3xl font-semibold text-gray-800 mb-8">
           Tính Năng Nổi Bật
         </h3>
@@ -94,7 +99,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Product Showcase */}
-      <section id="products" className="py-16 px-6 text-center">
+      <section id="products" className="py-16 px-6 text-center hidden md:block">
         <h3 className="text-3xl font-semibold text-gray-800 mb-8">
           Sản Phẩm Nổi Bật
         </h3>

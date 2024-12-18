@@ -64,7 +64,7 @@ function Collection() {
   };
 
   return (
-    <div className="p-20">
+    <div className="md:p-20">
       <form onSubmit={handleSubmit(onSubmit)} className="text-start space-y-10">
         <div>
           <label>Hãy nhập Collection:</label>

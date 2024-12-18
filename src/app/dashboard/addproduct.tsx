@@ -355,7 +355,7 @@ const ProductForm: React.FC = () => {
           <label className="block text-sm font-medium text-gray-700">
             Kích cỡ (Chọn ít nhất một)
           </label>
-          <div className="flex space-x-6 mt-2">
+          <div className="flex md:space-x-6 space-x-2 mt-2">
             {["S", "M", "L", "XL"].map((size) => (
               <div key={size} className="flex items-center">
                 <input

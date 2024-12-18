@@ -64,7 +64,7 @@ export default function ViewProduct() {
     <>
       {data && data.length > 0 ? (
         <section className="col-span-4">
-          <div className=" grid grid-cols-4 ">
+          <div className=" grid md:grid-cols-4 grid-cols-3 h-screen">
             {data &&
               data.map((item, index: number) => {
                 const price = String(item.price).replace(
@@ -97,16 +97,16 @@ export default function ViewProduct() {
                       </Link>
                       <Link
                         href={`/${item.collection}`}
-                        className="text-xs bg-[rgb(249,248,248)] w-full text-center opacity-55"
+                        className="text-xs bg-[rgb(249,248,248)] w-full text-center opacity-55 line-clamp-1"
                       >
                         {item.collection}
                       </Link>
                     </div>
                     <div className="mt-2 text-center space-y-3">
-                      <h2 className="text-sm opacity-80 leading-none">
+                      <h2 className="text-sm opacity-80 leading-none line-clamp-2">
                         {item.productName}
                       </h2>
-                      <div className="text-md text-red-700 font-bold">
+                      <div className="md:text-md text-xs text-red-700 font-bold">
                         {price}
                         <span className="underline">đ</span>
                       </div>

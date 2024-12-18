@@ -57,20 +57,20 @@ function Page() {
   };
 
   return (
-    <div className="min-h-[1500] bg-nav bg-opacity-20">
-      <div className="text-end pr-11 pt-10  ">
+    <div className=" bg-nav bg-opacity-20 h-screen">
+      <div className="text-end md:pr-11 md:pt-10 relative">
         <span
           onClick={() => {
             route.push("/");
           }}
-          className="text-cyan-800 rounded-md text-5xl cursor-pointer"
+          className="text-cyan-800 rounded-md text-5xl cursor-pointer absolute top-0 right-4"
         >
           x
         </span>
       </div>
-      <div className=" w-full h-screen">
-        <div className="grid grid-cols-6 px-10">
-          <div className="w-64 bg-blue-800 text-white p-6 h-screen">
+      <div className=" w-full h-scree bg-nav  min-h-[1000px]">
+        <div className="grid grid-cols-6 md:px-10 px-2 gap-4 pt-16 h-screen">
+          <div className="md:w-64 col-span-2 bg-blue-800 text-white md:p-6 h-screen">
             <h2 className="text-2xl font-semibold text-center">Dashboard</h2>
             {listDashboard.map((item, index) => {
               return (
@@ -100,27 +100,27 @@ function Page() {
           </div>
 
           {nghia === "sanpham" && admin ? (
-            <div className="col-span-5 px-10 ">
+            <div className="md:col-span-5 col-span-4 md:px-10 ">
               <ProductForm />
             </div>
           ) : nghia === "trangchu" && admin ? (
-            <div className="col-span-5 px-10 ">
+            <div className="md:col-span-5 col-span-4 md:px-10 ">
               <HomePage />
             </div>
           ) : nghia === "collection" && admin ? (
-            <div className="col-span-5 px-10 ">
+            <div className="md:col-span-5 col-span-4 md:px-10 ">
               <Collection />
             </div>
           ) : nghia === "caidat" && login ? (
-            <div className="col-span-5 px-10 ">
+            <div className="md:col-span-5 col-span-4 md:px-10 ">
               <Setting />
             </div>
           ) : nghia === "donhang" ? (
-            <div className="col-span-5 px-10 ">
+            <div className="md:col-span-5 col-span-4 md:px-10 ">
               <Cart />
             </div>
           ) : nghia === "xemsanpham" && admin ? (
-            <div className="col-span-5 px-10 ">
+            <div className="md:col-span-5 col-span-4 md:px-10 ">
               <ViewProduct />
             </div>
           ) : (
