@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
     <div className="font-sans bg-gray-50">
       {/* Header */}
       <header className="bg-blue-800 text-white py-6 px-8">
-        <div className="flex items-center justify-between overflow-hidden md:overflow-auto">
+        <div className="flex items-center justify-between overflow-hidden">
           <h1 className="text-3xl font-bold">MyShop</h1>
           <nav className="hidden md:block">
             <ul className="flex space-x-6">

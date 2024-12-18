@@ -58,7 +58,7 @@ function Page() {
 
   return (
     <div className=" bg-nav bg-opacity-20 h-screen">
-      <div className="text-end md:pr-11 md:pt-10 relative">
+      <div className="text-end md:pr-11 md:pt-10 relative bg-nav">
         <span
           onClick={() => {
             route.push("/");
@@ -68,10 +68,12 @@ function Page() {
           x
         </span>
       </div>
-      <div className=" w-full h-scree bg-nav  min-h-[1000px]">
+      <div className=" w-full h-scree bg-nav min-h-[1000px]">
         <div className="grid grid-cols-6 md:px-10 px-2 gap-4 pt-16 h-screen">
-          <div className="md:w-64 col-span-2 bg-blue-800 text-white md:p-6 h-screen">
-            <h2 className="text-2xl font-semibold text-center">Dashboard</h2>
+          <div className=" col-span-2 md:col-span-2 lg:col-span-1 bg-blue-800 text-white md:p-6 h-screen">
+            <h2 className="lg:text-2xl text-sm font-semibold text-center">
+              Dashboard
+            </h2>
             {listDashboard.map((item, index) => {
               return (
                 <nav className="mt-8" key={`index-${index}`}>
@@ -80,8 +82,8 @@ function Page() {
                       <span
                         className={
                           nghia === item.url
-                            ? `bg-red-300 py-2 w-full block rounded-md`
-                            : "block py-2 rounded-md hover:bg-blue-700 cursor-pointer"
+                            ? `bg-red-300 py-2 w-full block rounded-md text-sm lg:text-md text-center`
+                            : "block py-2 rounded-md hover:bg-blue-700 cursor-pointer md:text-sm text-sm lg:text-md text-center"
                         }
                         onClick={() => {
                           if (item.url === "dangxuat") {
@@ -100,27 +102,27 @@ function Page() {
           </div>
 
           {nghia === "sanpham" && admin ? (
-            <div className="md:col-span-5 col-span-4 md:px-10 ">
+            <div className="md:col-span-4 lg:col-span-5 col-span-4 md:px-10  ">
               <ProductForm />
             </div>
           ) : nghia === "trangchu" && admin ? (
-            <div className="md:col-span-5 col-span-4 md:px-10 ">
+            <div className="md:col-span-4 lg:col-span-5 col-span-4 md:px-10 ">
               <HomePage />
             </div>
           ) : nghia === "collection" && admin ? (
-            <div className="md:col-span-5 col-span-4 md:px-10 ">
+            <div className="md:col-span-4 lg:col-span-5 col-span-4 md:px-10 ">
               <Collection />
             </div>
           ) : nghia === "caidat" && login ? (
-            <div className="md:col-span-5 col-span-4 md:px-10 ">
+            <div className="md:col-span-4 lg:col-span-5 col-span-4 md:px-10 ">
               <Setting />
             </div>
           ) : nghia === "donhang" ? (
-            <div className="md:col-span-5 col-span-4 md:px-10 ">
+            <div className="md:col-span-4 lg:col-span-5 col-span-4 md:px-10 ">
               <Cart />
             </div>
           ) : nghia === "xemsanpham" && admin ? (
-            <div className="md:col-span-5 col-span-4 md:px-10 ">
+            <div className="md:col-span-4 lg:col-span-5 col-span-4 md:px-10 ">
               <ViewProduct />
             </div>
           ) : (

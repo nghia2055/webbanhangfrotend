@@ -46,9 +46,11 @@ function Setting() {
   const onSubmit = (data: FormData) => {};
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6">Thông Tin Người Dùng</h1>
+    <div className="min-h-screen px-4 md:flex md:justify-center">
+      <div className="md:w-2/3 mx-auto bg-white md:m-0 p-8 rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          Thông Tin Người Dùng
+        </h1>
 
         {/* Display User Info */}
         <div className="md:space-y-6 space-y-2">
@@ -56,7 +58,7 @@ function Setting() {
             <span className="text-gray-600 font-medium">Tên:</span>
             <span>{data?.user || "Chưa có tên"}</span>
           </div>
-          <div className="flex md:items-center md:justify-between flex-col items-start">
+          <div className="flex  md:items-start md:justify-between flex-col md:flex-row items-start">
             <span className="text-gray-600 font-medium">Email:</span>
             <span>{data?.email || "Chưa có email"}</span>
           </div>
