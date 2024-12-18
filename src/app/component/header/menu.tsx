@@ -3,10 +3,12 @@ import { IoMenuSharp } from "react-icons/io5";
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 
 function Menu() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const ref = useRef(null);
@@ -30,6 +32,10 @@ function Menu() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handlerSearch = () => {
+    router.push("/MenuSearch");
+  };
 
   return (
     <>
@@ -56,7 +62,7 @@ function Menu() {
                 <div className="text-black text-start text-sm flex flex-col pl-2 mt-16 space-y-4 ">
                   <Link href="/login">Đăng Nhập</Link>
                   <Link href="/register">Đăng Ký</Link>
-                  <Link href="/MenuSearch">Tìm Kiếm</Link>
+                  <span onClick={handlerSearch}>Tìm Kiếm</span>
                   <Link href="/cart">Giỏ Hàng</Link>
                   <Link href="/dashboard">Dashboard</Link>
                 </div>
