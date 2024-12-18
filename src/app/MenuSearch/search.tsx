@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 type data = {
   collection: string;
@@ -21,20 +21,27 @@ function SearchMenu() {
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    if (!e.target.value.trim()) {
-      setData([]);
-    } else {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/searchMenu/${e.target.value}`
-        );
-        const data = await res.json();
-        setData(data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
   };
+
+  useEffect(() => {
+    const res = async () => {
+      if (!search.trim()) {
+        setData([]);
+      } else {
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_URL}/searchMenu/${search}`
+          );
+          const data = await res.json();
+          setData(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    res();
+  }, [search]);
+
   return (
     <>
       <input
