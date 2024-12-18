@@ -94,17 +94,8 @@ function Page() {
   return (
     <>
       <div className="bg-gradient-to-r from-blue-500 to-green-500 w-full h-screen bg-opacity-60 relative ">
-        <div className="text-end text-3xl font-bold text-red-600 p-10 absolute z-50 top-0 right-0 sm:top-10 sm:right-6 md:right-16 lg:right-[100px]">
-          <Button
-            variant="secondary"
-            className="bg-green-700 opacity-80"
-            onClick={handleBackHome}
-          >
-            X
-          </Button>
-        </div>
         <div className="container sm:mx-auto absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex justify-center mx-auto w-full sm:h-[600px] rounded-3xl overflow-hidden sm:w-[1000]">
-          <div className="w-1/2 bg-white flex justify-center items-center flex-col gap-5 bg-opacity-10">
+          <div className="w-1/2 bg-white md:flex justify-center items-center flex-col gap-5 bg-opacity-10 hidden">
             <span className="text-white text-center font-thin text-sm">
               Nếu đã có tài khoản hay nhấn đăng nhập!
             </span>
@@ -117,7 +108,16 @@ function Page() {
               </Button>
             </Link>
           </div>
-          <div className="w-2/3 px-24 bg-white text-gray-900 flex flex-col items-center justify-center bg-opacity-10">
+          <div className="md:w-2/3 md:px-24 px-10 bg-white text-gray-900 flex flex-col items-center justify-center bg-opacity-10 w-full relative">
+            <div className="text-end text-3xl font-bold text-red-600 p-10 absolute z-50 -top-7 -right-5  sm:top-0 sm:-right-8 md:right-0 lg:right-0">
+              <Button
+                variant="secondary"
+                className="bg-green-700 opacity-80"
+                onClick={handleBackHome}
+              >
+                X
+              </Button>
+            </div>
             <p className="mb-10 text-red-500 font-bold text-3xl">
               Đăng Kí Tài Khoản
             </p>
@@ -218,7 +218,7 @@ function Page() {
                     </>
                   )}
                 />
-                <div className="text-center pt-10">
+                <div className="text-center md:pt-10 p-2">
                   <Button
                     type="submit"
                     variant="secondary"

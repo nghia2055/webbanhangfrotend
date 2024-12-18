@@ -39,43 +39,34 @@ function Page() {
 
   return (
     <>
-      <div className={`px-4 flex pt-[200px] mb-10`}>
-        <div className={` w-4/5`}>
+      <div className="px-4 flex pt-[200px] mb-10 flex-col w-full overflow-x-scroll">
+        <div className=" flex flex-col w-[700px] mx-auto">
           <div className="font-bold text-lg">Giỏ Hàng Của Bạn</div>
           <br />
-          <div className="grid grid-cols-15 flex-grow text-center border-2">
-            <div className="col-span-2">
+          <div className=" text-center border-b-2 border-l-2 border-t-2 border-r-2 place-items-center flex">
+            <div className="w-32 shrink-0">
               <span>Hình ảnh</span>
-              {/* <p>ảnh</p> */}
             </div>
-            <div className="col-span-4">
+            <div className="w-32 shrink-0">
               <span>Tên sản phẩm</span>
-              {/* <div>
-                <p>Giày</p>
-                <span>Chọn size: </span>
-                <span>Điểm thưởng: </span>
-              </div> */}
             </div>
-            <div className="col-span-2">
+            <div className="w-32 shrink-0">
               <span>Mã hàng</span>
             </div>
-            <div className="col-span-3">
+            <div className="w-32 shrink-0">
               <span>Số lượng</span>
             </div>
-            <div className="col-span-2">
+            <div className="w-32 shrink-0">
               <span>Đơn giá</span>
-            </div>
-            <div className="col-span-2">
-              <span>Tổng cộng</span>
             </div>
           </div>
           {data.map((item: Data, index: number) => {
             return (
               <div
-                className="grid grid-cols-15 flex-grow text-center border-b-2 border-l-2 border-r-2 place-items-center "
+                className="flex-grow text-center border-b-2 border-l-2 border-r-2 place-items-center flex overflow-x-scroll md:overflow-hidden "
                 key={`index-${index}`}
               >
-                <div className="col-span-2 flex justify-center py-2">
+                <div className=" flex justify-center py-2 w-32 shrink-0 ">
                   <Image
                     src={item.productImages[0]}
                     width={70}
@@ -83,13 +74,13 @@ function Page() {
                     alt=""
                   />
                 </div>
-                <div className="col-span-4">
-                  <div>
+                <div className="w-32 shrink-0">
+                  <div className="line-clamp-2 break-all">
                     <p>{item.productName}</p>
                     <span>Chọn size: {item.size} </span>
                   </div>
                 </div>
-                <div className="col-span-2 space-y-3">
+                <div className="col-span-2 space-y-3 w-32 shrink-0">
                   <div>MSN{item._id.slice(19)}</div>
                   <div
                     className="text-red-500 text-xs cursor-pointer font-bold"
@@ -100,15 +91,11 @@ function Page() {
                     Xóa
                   </div>
                 </div>
-                <div className="col-span-3">
+                <div className=" w-32 shrink-0">
                   <span>{item.amount}</span>
                 </div>
-                <div className="col-span-2">
-                  <span>
-                    {String(item.price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  </span>
-                </div>
-                <div className="col-span-2">
+
+                <div className="w-32 shrink-0">
                   <span>
                     Tổng cộng:{" "}
                     {String(item.price * item.amount).replace(
@@ -122,9 +109,9 @@ function Page() {
           })}
         </div>
         <div
-          className={`ml-10 flex flex-col items-center text-center flex-grow border-2 mb-10 p-2 h-48`}
+          className={` flex flex-col items-center w-[700px] mx-auto text-center flex-grow border-2 mb-10 p-2 h-48`}
         >
-          <div className="border-2 w-2/3 p-2 mt-10 text-start">
+          <div className="border-2 w-full md:w-2/3 p-2 mt-10 text-start">
             Tổng: {String(reduce).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </div>
           <Button className="w-full mt-11" onClick={handlePay}>

@@ -26,7 +26,7 @@ function ListProduct({
   Subcollection: sub[];
 }) {
   return (
-    <div className="grid grid-cols-5 px-5 md:pt-[250px] sm:pt-[120px] min-h-[1000px] gap-x-14 lg:pt-[200px] pt-[150px]">
+    <div className="grid grid-cols-5 px-5 md:pt-[200px] sm:pt-[120px] min-h-[1000px] gap-x-14 lg:pt-[200px] pt-[150px]">
       <FilterProduct
         productsData={productsData}
         Subcollection={Subcollection}

@@ -102,7 +102,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
           </div>
         </div>
         <div
-          className="lg:col-span-5 lg:overflow-hidden lg:relative "
+          className="lg:col-span-5 lg:overflow-hidden lg:relative pointer-events-none lg:pointer-events-auto "
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
@@ -112,7 +112,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             height={1000}
             alt="Zoomable Image"
             ref={imageRef}
-            className="lg:absolute lg:top-1/2 lg:left-1/2  lg:transform lg:-translate-x-1/2 lg:cursor-zoom-in lg:-translate-y-1/2 lg:transition-transform lg:duration-200 lg:ease-out "
+            className="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:cursor-zoom-in lg:-translate-y-1/2 lg:transition-transform lg:duration-200 lg:ease-out "
           />
         </div>
         <div className="col-span-5 px-7 space-y-4">

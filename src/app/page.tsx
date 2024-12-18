@@ -31,7 +31,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="max-w-[1480px] mx-auto md:pt-32 grid gap-y-6 pt-32 p-4 lg:pt-40 sm:pt-28 ">
+      <main className="max-w-[1480px] mx-auto md:pt-32 grid gap-y-6 pt-36 p-4 lg:pt-40 sm:pt-28 ">
         <section className="grid md:grid-cols-4 md:gap-x-10 md:pb-10 grid-cols-2 md:pt-16 lg:pt-8 lg:grid-cols-5">
           {Array.isArray(data) &&
             data?.map((item: data, index: number) => {
@@ -71,8 +71,7 @@ export default async function Home() {
                   </div>
                   <div className="mt-2 text-center ">
                     <h2 className="text-sm opacity-80 leading-none">
-                      <span className="line-clamp-2 md:h-12 overflow-hidden text-ellipsis px-2 h-9 flex items-center sm:h-9 ">
-                        {" "}
+                      <span className="line-clamp-2 md:h-12 sm:my-2 px-2 leading-4 max-h-13 sm:max-h-12 break-all ">
                         {item.productName}
                       </span>
                     </h2>

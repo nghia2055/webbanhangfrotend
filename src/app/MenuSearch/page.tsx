@@ -5,7 +5,7 @@ function Page() {
   return (
     <>
       <Header />
-      <div className="sm:pt-[100px] mx-20 text-center md:pt-[200px] pt-[150px] ">
+      <div className="sm:pt-[100px] mx-8 text-center md:pt-[200px] pt-[150px] ">
         <SearchMenu />
       </div>
     </>

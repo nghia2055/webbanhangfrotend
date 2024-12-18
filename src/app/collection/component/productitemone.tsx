@@ -54,8 +54,8 @@ function ProductItems({
                   {item.collection}
                 </Link>
               </div>
-              <div className="mt-2 text-center space-y-3">
-                <h2 className="line-clamp-2 md:h-20 overflow-hidden text-ellipsis px-2 h-20 flex items-center sm:h-20">
+              <div className="mt-2 text-center md:space-y-3">
+                <h2 className="line-clamp-2 md:h-20 px-2 max-h-12 sm:h-20 break-all">
                   {item.productName}
                 </h2>
                 <div className="text-md text-red-700 font-bold">
