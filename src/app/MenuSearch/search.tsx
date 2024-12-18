@@ -17,8 +17,10 @@ type data = {
 
 function SearchMenu() {
   const [data, setData] = useState<data[]>([]);
+  const [search, setSearch] = useState("");
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
     if (!e.target.value.trim()) {
       setData([]);
     } else {
@@ -36,6 +38,7 @@ function SearchMenu() {
   return (
     <>
       <input
+        value={search}
         onChange={handleChange}
         className=" border-2 rounded-md w-full bg-slate-300 text-black pl-2 h-12 text-xs "
         placeholder="Hãy nhập sản phẩm bạn muốn tìm?"
