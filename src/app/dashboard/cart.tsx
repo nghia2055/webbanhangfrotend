@@ -51,7 +51,7 @@ function Cart() {
                   return (
                     <>
                       <div
-                        className=" w-full h-auto border-[1px] flex flex-col items-center px-1"
+                        className=" w-full h-auto border-[1px] flex flex-col items-center"
                         key={`${item._id}-${index}`}
                       >
                         <div className="flex flex-col items-center ">

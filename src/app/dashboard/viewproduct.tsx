@@ -64,7 +64,7 @@ export default function ViewProduct() {
     <>
       {data && data.length > 0 ? (
         <section className="col-span-4">
-          <div className=" grid md:grid-cols-4 grid-cols-3 h-screen">
+          <div className=" grid md:grid-cols-4 grid-cols-3 pb-10">
             {data &&
               data.map((item, index: number) => {
                 const price = String(item.price).replace(
@@ -74,7 +74,7 @@ export default function ViewProduct() {
                 const src = item.productImages[5];
                 return (
                   <div
-                    className=" w-full h-auto border-[1px] flex flex-col items-center "
+                    className=" w-full border-[1px] flex flex-col items-center "
                     key={index}
                   >
                     <div
@@ -102,11 +102,11 @@ export default function ViewProduct() {
                         {item.collection}
                       </Link>
                     </div>
-                    <div className="mt-2 text-center space-y-3">
-                      <h2 className="text-sm opacity-80 leading-none line-clamp-2">
+                    <div className="mt-2 text-center space-y-3 w-15 ">
+                      <h2 className="text-xs opacity-80 leading-none line-clamp-2 sm:h-7 h-6 ">
                         {item.productName}
                       </h2>
-                      <div className="md:text-md text-xs text-red-700 font-bold">
+                      <div className="md:text-md text-xs text-red-700 font-bold ">
                         {price}
                         <span className="underline">đ</span>
                       </div>

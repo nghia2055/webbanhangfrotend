@@ -68,8 +68,8 @@ function Page() {
           x
         </span>
       </div>
-      <div className=" w-full h-scree bg-nav min-h-[1000px]">
-        <div className="grid grid-cols-6 md:px-10 px-2 gap-4 pt-16 h-screen">
+      <div className=" w-full bg-nav ">
+        <div className="grid grid-cols-6 md:px-10 px-2 gap-4 pt-16">
           <div className=" col-span-2 md:col-span-2 lg:col-span-1 bg-blue-800 text-white md:p-6 h-screen">
             <h2 className="lg:text-2xl text-sm font-semibold text-center">
               Dashboard
