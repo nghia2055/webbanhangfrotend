@@ -1,12 +1,15 @@
 "use client";
 import { IoMenuSharp } from "react-icons/io5";
 
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function Menu() {
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
 
@@ -29,6 +32,10 @@ function Menu() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+  }, []);
+
+  useEffect(() => {
+    router.refresh();
   }, []);
 
   return (

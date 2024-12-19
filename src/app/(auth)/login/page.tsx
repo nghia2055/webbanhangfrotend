@@ -21,7 +21,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { set } from "lodash";
 
 const formSchema = z.object({
   email: z.string().email("Hãy nhập email"),
@@ -113,9 +112,6 @@ function Page() {
     setErrorLogin(false);
   };
 
-  useEffect(() => {
-    router.push("/");
-  }, []);
   return (
     <>
       <div className="bg-gradient-to-r from-blue-500 to-green-500 w-full h-screen bg-opacity-60 relative">
