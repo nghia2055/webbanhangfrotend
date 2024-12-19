@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
+import { set } from "lodash";
 
 const formSchema = z.object({
   email: z.string().email("Hãy nhập email"),
@@ -69,6 +70,7 @@ function Page() {
               },
             })
           );
+
           await fetch("/api/auth", {
             method: "POST",
             body: JSON.stringify(token),
@@ -76,9 +78,9 @@ function Page() {
               "Content-Type": "application/json",
             },
           })
-            .then((res) => res.json())
+            .then(() => router.push("/"))
             .then(() => {
-              toast("Login thành công", {
+              toast("Đăng nhập thành công", {
                 action: {
                   label: "✖", // Biểu tượng nút đóng
                   onClick: () => toast.dismiss(), // Đóng Toast
@@ -88,7 +90,6 @@ function Page() {
             .catch((error) => {
               console.log(error);
             });
-          router.push("/");
         }
       } catch (err) {
         console.log(err);
