@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { useRouter } from "next/navigation";
 import throttle from "lodash/throttle";
+import { toast } from "sonner";
 
 type data = {
   collection: string;
@@ -75,6 +76,14 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
       // Reset vị trí ảnh về giữa và scale lại như cũ
       image.style.transform = "translate(-50%, -50%) scale(1)";
     }
+  };
+  const handleReport = () => {
+    toast("Bạn đã gửi đánh giá thành công", {
+      action: {
+        label: "✖", // Biểu tượng nút đóng
+        onClick: () => toast.dismiss(), // Đóng Toast
+      },
+    });
   };
 
   return (
@@ -207,7 +216,7 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
           <div className="space-y-4">
             <span className="text-red-800 font-bold">* Nghĩa cam kết:</span>
             <p>
-              - Myshoes.vn miễn phí giao hàng toàn quốc (với đơn hàng từ 500.000
+              - Nghĩa miễn phí giao hàng toàn quốc (với đơn hàng từ 500.000
               vnđ).
             </p>
             <p>
@@ -274,7 +283,11 @@ function ProductItem({ productsItemsData }: { productsItemsData: data }) {
             <input type="radio" name="nghĩa" value="5 sao" />
             <span>Tốt</span>
           </span>
-          <Button variant="destructive" className="w-full mt-10">
+          <Button
+            onClick={handleReport}
+            variant="destructive"
+            className="w-full mt-10"
+          >
             Tiếp tục
           </Button>
         </div>

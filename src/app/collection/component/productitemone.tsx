@@ -48,7 +48,7 @@ function ProductItems({
                   />
                 </Link>
                 <Link
-                  href={`/${item.collection}`}
+                  href={`/collection/${item.collection}`}
                   className="text-xs bg-[rgb(249,248,248)] w-full text-center opacity-55"
                 >
                   {item.collection}

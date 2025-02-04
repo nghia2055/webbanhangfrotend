@@ -88,8 +88,6 @@ function Search() {
       />
       {search ? (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           className=" md:px-14 md:py-4 absolute top-full left-0 min-h-[440px] bg-white w-full"
         >
