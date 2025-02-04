@@ -27,17 +27,7 @@ function Cart() {
       try {
         const res = await fetch(`/api/auth/dashboardorder`);
         const dataJSON = await res.json();
-        const processedData = dataJSON.map((item: any) => {
-          if (item.product) {
-            try {
-              item.product = JSON.parse(item.product); // Chuyển chuỗi JSON thành đối tượng
-            } catch (error) {
-              console.error("Error parsing JSON:", error);
-            }
-          }
-          return item;
-        });
-        setData(processedData);
+        setData(dataJSON);
       } catch (err) {
         console.log(err);
       }
@@ -45,7 +35,6 @@ function Cart() {
     fetchOrder();
   }, []);
 
-  console.log("data", data);
   return (
     <div className="text-center flex justify-center text-xl ">
       <main>

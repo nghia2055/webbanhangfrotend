@@ -17,6 +17,7 @@ export async function generateStaticParams() {
 const blog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const param = await params;
   const name = param.slug;
+  console.log(name);
 
   if (name === "gioi-thieu") {
     return (

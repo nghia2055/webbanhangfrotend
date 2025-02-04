@@ -52,8 +52,11 @@ export const addproduct = createSlice({
           : item
       );
     },
+    refresh: (state, action: PayloadAction<string>) => {
+      state.product = [];
+    },
   },
 });
 
-export const { add, remove, amount, addamount, minusamount } =
+export const { add, remove, amount, addamount, minusamount, refresh } =
   addproduct.actions;

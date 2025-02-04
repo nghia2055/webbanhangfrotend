@@ -6,7 +6,7 @@ import { ChangeEvent, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import Image from "next/image";
-import { remove } from "@/app/redux/slice/sliceaddproduct";
+import { refresh, remove } from "@/app/redux/slice/sliceaddproduct";
 import { toast } from "sonner";
 
 type Data = {
@@ -161,6 +161,7 @@ function Page() {
             setNumberPhone("");
             setAddress("");
             setAddressAll("");
+            dispatch(refresh(""));
           } else {
             throw new Error("Something went wrong!");
           }
