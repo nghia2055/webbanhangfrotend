@@ -1,8 +1,6 @@
 import Header from "../component/header/header";
 import Footer from "../component/header/footer";
 
-export const dynamicParams = true;
-
 export async function generateStaticParams() {
   const products = [
     "gioi-thieu",
