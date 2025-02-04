@@ -74,8 +74,11 @@ function Page() {
         });
 
         if (!res.ok) {
-          console.log("LỖI");
-          throw new Error(`HTTP error! status: ${res.status}`);
+          const errorData = await res.json(); // Lấy nội dung lỗi từ response
+          throw {
+            status: res.status,
+            message: errorData,
+          };
         }
         toast("Bạn đã đăng kí tài khoản thành công.", {
           action: {
@@ -84,8 +87,29 @@ function Page() {
           },
         });
         form.reset();
-      } catch (err) {
-        console.log(err);
+      } catch (err: any) {
+        if (err.message === "Email đã tồn tại") {
+          toast("Email đã tồn tại", {
+            action: {
+              label: "✖", // Biểu tượng nút đóng
+              onClick: () => toast.dismiss(), // Đóng Toast
+            },
+          });
+        } else if (err.message === "Người dùng đã tồn tại") {
+          toast("Người dùng đã tồn tại", {
+            action: {
+              label: "✖", // Biểu tượng nút đóng
+              onClick: () => toast.dismiss(), // Đóng Toast
+            },
+          });
+        } else {
+          toast("Lỗi sever", {
+            action: {
+              label: "✖", // Biểu tượng nút đóng
+              onClick: () => toast.dismiss(), // Đóng Toast
+            },
+          });
+        }
       }
     };
     Login();
